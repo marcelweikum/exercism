@@ -8,16 +8,16 @@
 using namespace std;
 using namespace hellmath;
 
-TEST_CASE("Troll posts are visible to trolls", "[task_2]") {
+TEST_CASE("Troll posts are visible to trolls", "[task_2]")
+{
     AccountStatus poster{AccountStatus::troll};
     AccountStatus viewer{AccountStatus::troll};
 
     REQUIRE(display_post(poster, viewer));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
-TEST_CASE("Troll posts are not visible to non-trolls", "[task_2]") {
+TEST_CASE("Troll posts are not visible to non-trolls", "[task_2]")
+{
     AccountStatus poster{AccountStatus::troll};
 
     AccountStatus viewer{AccountStatus::guest};
@@ -30,7 +30,8 @@ TEST_CASE("Troll posts are not visible to non-trolls", "[task_2]") {
     REQUIRE_FALSE(display_post(poster, viewer));
 }
 
-TEST_CASE("Non-troll posts are visible to guests", "[task_2]") {
+TEST_CASE("Non-troll posts are visible to guests", "[task_2]")
+{
     AccountStatus viewer{AccountStatus::guest};
 
     AccountStatus poster{AccountStatus::user};
@@ -40,7 +41,8 @@ TEST_CASE("Non-troll posts are visible to guests", "[task_2]") {
     REQUIRE(display_post(poster, viewer));
 }
 
-TEST_CASE("Non-troll posts are visible to trolls", "[task_2]") {
+TEST_CASE("Non-troll posts are visible to trolls", "[task_2]")
+{
     AccountStatus viewer{AccountStatus::troll};
 
     AccountStatus poster{AccountStatus::user};
@@ -50,7 +52,8 @@ TEST_CASE("Non-troll posts are visible to trolls", "[task_2]") {
     REQUIRE(display_post(poster, viewer));
 }
 
-TEST_CASE("Non-troll posts are visible to users", "[task_2]") {
+TEST_CASE("Non-troll posts are visible to users", "[task_2]")
+{
     AccountStatus viewer{AccountStatus::user};
 
     AccountStatus poster{AccountStatus::user};
@@ -60,7 +63,8 @@ TEST_CASE("Non-troll posts are visible to users", "[task_2]") {
     REQUIRE(display_post(poster, viewer));
 }
 
-TEST_CASE("Non-troll posts are visible to mods", "[task_2]") {
+TEST_CASE("Non-troll posts are visible to mods", "[task_2]")
+{
     AccountStatus viewer{AccountStatus::mod};
 
     AccountStatus poster{AccountStatus::user};
@@ -70,7 +74,8 @@ TEST_CASE("Non-troll posts are visible to mods", "[task_2]") {
     REQUIRE(display_post(poster, viewer));
 }
 
-TEST_CASE("Guests have correct permissions", "[task_3]") {
+TEST_CASE("Guests have correct permissions", "[task_3]")
+{
     AccountStatus status{AccountStatus::guest};
 
     Action action{Action::read};
@@ -83,7 +88,8 @@ TEST_CASE("Guests have correct permissions", "[task_3]") {
     REQUIRE_FALSE(permission_check(action, status));
 }
 
-TEST_CASE("Trolls have correct permissions", "[task_3]") {
+TEST_CASE("Trolls have correct permissions", "[task_3]")
+{
     AccountStatus status{AccountStatus::troll};
 
     Action action{Action::read};
@@ -96,7 +102,8 @@ TEST_CASE("Trolls have correct permissions", "[task_3]") {
     REQUIRE_FALSE(permission_check(action, status));
 }
 
-TEST_CASE("Users have correct permissions", "[task_3]") {
+TEST_CASE("Users have correct permissions", "[task_3]")
+{
     AccountStatus status{AccountStatus::user};
 
     Action action{Action::read};
@@ -109,7 +116,8 @@ TEST_CASE("Users have correct permissions", "[task_3]") {
     REQUIRE_FALSE(permission_check(action, status));
 }
 
-TEST_CASE("Moderators have correct permissions", "[task_3]") {
+TEST_CASE("Moderators have correct permissions", "[task_3]")
+{
     AccountStatus status{AccountStatus::mod};
 
     Action action{Action::read};
@@ -122,7 +130,8 @@ TEST_CASE("Moderators have correct permissions", "[task_3]") {
     REQUIRE(permission_check(action, status));
 }
 
-TEST_CASE("Guests cannot start games", "[task_4]") {
+TEST_CASE("Guests cannot start games", "[task_4]")
+{
     // First player is a guest
     AccountStatus player1{AccountStatus::guest};
 
@@ -151,7 +160,8 @@ TEST_CASE("Guests cannot start games", "[task_4]") {
     REQUIRE_FALSE(valid_player_combination(player1, player2));
 }
 
-TEST_CASE("Trolls can only play with other trolls", "[task_4]") {
+TEST_CASE("Trolls can only play with other trolls", "[task_4]")
+{
     // First player is a troll
     AccountStatus player1{AccountStatus::troll};
 
@@ -180,7 +190,8 @@ TEST_CASE("Trolls can only play with other trolls", "[task_4]") {
     REQUIRE_FALSE(valid_player_combination(player1, player2));
 }
 
-TEST_CASE("Users can only play with users or mods", "[task_4]") {
+TEST_CASE("Users can only play with users or mods", "[task_4]")
+{
     // First player is a user
     AccountStatus player1{AccountStatus::user};
 
@@ -209,7 +220,8 @@ TEST_CASE("Users can only play with users or mods", "[task_4]") {
     REQUIRE(valid_player_combination(player1, player2));
 }
 
-TEST_CASE("Moderators can only play with users or mods", "[task_4]") {
+TEST_CASE("Moderators can only play with users or mods", "[task_4]")
+{
     // First player is a mod
     AccountStatus player1{AccountStatus::mod};
 
@@ -238,7 +250,8 @@ TEST_CASE("Moderators can only play with users or mods", "[task_4]") {
     REQUIRE(valid_player_combination(player1, player2));
 }
 
-TEST_CASE("Trolls have lowest priority", "[task_5]") {
+TEST_CASE("Trolls have lowest priority", "[task_5]")
+{
     // First player is a troll
     AccountStatus player1{AccountStatus::troll};
 
@@ -267,7 +280,8 @@ TEST_CASE("Trolls have lowest priority", "[task_5]") {
     REQUIRE(has_priority(player1, player2));
 }
 
-TEST_CASE("Guests have second lowest priority", "[task_5]") {
+TEST_CASE("Guests have second lowest priority", "[task_5]")
+{
     // First player is a guest
     AccountStatus player1{AccountStatus::guest};
 
@@ -296,7 +310,8 @@ TEST_CASE("Guests have second lowest priority", "[task_5]") {
     REQUIRE(has_priority(player1, player2));
 }
 
-TEST_CASE("Users have second highest priority", "[task_5]") {
+TEST_CASE("Users have second highest priority", "[task_5]")
+{
     // First player is a user
     AccountStatus player1{AccountStatus::user};
 
@@ -325,7 +340,8 @@ TEST_CASE("Users have second highest priority", "[task_5]") {
     REQUIRE(has_priority(player1, player2));
 }
 
-TEST_CASE("Moderators have highest priority", "[task_5]") {
+TEST_CASE("Moderators have highest priority", "[task_5]")
+{
     // First player is a mod
     AccountStatus player1{AccountStatus::mod};
 
@@ -354,4 +370,5 @@ TEST_CASE("Moderators have highest priority", "[task_5]") {
     REQUIRE_FALSE(has_priority(player1, player2));
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
