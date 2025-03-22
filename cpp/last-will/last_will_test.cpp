@@ -7,7 +7,8 @@
 
 using namespace std;
 
-TEST_CASE("Family secrets have not been altered", "[task_1]") {
+TEST_CASE("Family secrets have not been altered", "[task_1]")
+{
     // We cannot test the existence of a namespace in the compiled
     // Code.
     // This test merely checks if the numbers in the file have
@@ -30,13 +31,15 @@ TEST_CASE("Family secrets have not been altered", "[task_1]") {
 }
 
 TEST_CASE("Account number assembly function exists in correct namespace",
-          "[task_2]") {
+          "[task_2]")
+{
     REQUIRE_NOTHROW(estate_executor::assemble_account_number(0));
 }
 
 #if defined(EXERCISM_RUN_ALL_TESTS)
 
-TEST_CASE("Account number assembly works correctly", "[task_2]") {
+TEST_CASE("Account number assembly works correctly", "[task_2]")
+{
     int account_with_secret_1{16706};
     int account_with_secret_23{14238};
 
@@ -47,11 +50,13 @@ TEST_CASE("Account number assembly works correctly", "[task_2]") {
 }
 
 TEST_CASE("Code fragment number assembly function exists in correct namespace",
-          "[task_3]") {
+          "[task_3]")
+{
     REQUIRE_NOTHROW(estate_executor::assemble_code());
 }
 
-TEST_CASE("Code fragments fit correctly", "[task_3]") {
+TEST_CASE("Code fragments fit correctly", "[task_3]")
+{
     int final_code{1925550};
 
     REQUIRE(estate_executor::assemble_code() == final_code);
