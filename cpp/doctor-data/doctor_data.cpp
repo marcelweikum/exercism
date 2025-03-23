@@ -1,4 +1,22 @@
 // ERROR: FILE CORRUPTED. Please supply valid C++ Code.
 
-hp4,ölacöiömthö%Äsmaö%Äsubö(311040ö%Äspaö%Äaddö(311040ö%Ädacöiömthö%Äcountö.hpt,hp4ö%Äxctöhd2ö%Ädacöiöma1
-hp2,öjmpö.
+#include "doctor_data.h"
+namespace heaven
+{
+    std::string get_older_bob(heaven::Vessel instance1, heaven::Vessel instance2)
+    {
+        if (instance1.generation < instance2.generation)
+        {
+            return instance1.name;
+        }
+        return instance2.name;
+    }
+    bool in_the_same_system(heaven::Vessel instance1, heaven::Vessel instance2)
+    {
+        if (instance1.current_system == instance2.current_system)
+        {
+            return true;
+        }
+        return false;
+    }
+}

@@ -5,21 +5,22 @@
 #include "test/catch.hpp"
 #endif
 
-TEST_CASE("Create different probes", "[task_1]") {
+TEST_CASE("Create different probes", "[task_1]")
+{
     heaven::Vessel bob{"Robert Johansson", 1};
     heaven::Vessel will{"Riker", 2, star_map::System::BetaHydri};
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
-TEST_CASE("Create drone from replication", "[task_2]") {
+TEST_CASE("Create drone from replication", "[task_2]")
+{
     heaven::Vessel bob{"Robert Johansson", 1};
     heaven::Vessel bob5 = bob.replicate("Mario");
     REQUIRE(bob5.current_system == star_map::System::Sol);
     REQUIRE(bob5.generation == 2);
 }
 
-TEST_CASE("Check buster mechanics", "[task_3]") {
+TEST_CASE("Check buster mechanics", "[task_3]")
+{
     heaven::Vessel bob6{"Homer", 3, star_map::System::EpsilonEridani};
     REQUIRE(bob6.busters == 0);
     bob6.make_buster();
@@ -31,7 +32,8 @@ TEST_CASE("Check buster mechanics", "[task_3]") {
     REQUIRE_FALSE(success);
 }
 
-TEST_CASE("Check non-class functions", "[task_4]") {
+TEST_CASE("Check non-class functions", "[task_4]")
+{
     heaven::Vessel bob1{"Bob", 1, star_map::System::AlphaCentauri};
     heaven::Vessel marv{"Marvin", 2, star_map::System::DeltaEridani};
     heaven::Vessel milo{"Milo", 3, star_map::System::DeltaEridani};
@@ -42,4 +44,5 @@ TEST_CASE("Check non-class functions", "[task_4]") {
     REQUIRE_FALSE(heaven::in_the_same_system(marv, howie));
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
