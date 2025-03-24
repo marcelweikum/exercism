@@ -1,10 +1,24 @@
 #if !defined(GRADE_SCHOOL_H)
 #define GRADE_SCHOOL_H
 
-namespace grade_school {
+#include <vector>
+#include <string>
+#include <map>
 
-// TODO: add your solution here
+namespace grade_school
+{
+    class school
+    {
+    public:
+        std::map<int, std::vector<std::string>> roster() const;
 
-}  // namespace grade_school
+        void add(std::string name, int grade);
 
-#endif  // GRADE_SCHOOL_H
+        std::vector<std::string> grade(int grade) const;
+
+    private:
+        std::map<int, std::vector<std::string>> grade_{};
+    };
+} // namespace grade_school
+
+#endif // GRADE_SCHOOL_H
