@@ -1,10 +1,16 @@
 #if !defined(TRIANGLE_H)
 #define TRIANGLE_H
 
-namespace triangle {
+namespace triangle
+{
+    enum flavor
+    {
+        equilateral,
+        isosceles,
+        scalene
+    };
 
-// TODO: add your solution here
+    triangle::flavor kind(double a, double b, double c);
+} // namespace triangle
 
-}  // namespace triangle
-
-#endif  // TRIANGLE_H
+#endif // TRIANGLE_H
