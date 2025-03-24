@@ -1,10 +1,9 @@
 #if !defined(LEAP_H)
 #define LEAP_H
 
-namespace leap {
+namespace leap
+{
+    bool is_leap_year(int year);
+} // namespace leap
 
-// TODO: add your solution here
-
-}  // namespace leap
-
-#endif  // LEAP_H
+#endif // LEAP_H
