@@ -1,10 +1,14 @@
 #if !defined(NUCLEOTIDE_COUNT_H)
 #define NUCLEOTIDE_COUNT_H
 
-namespace nucleotide_count {
+#include <map>
+#include <string>
 
-// TODO: add your solution here
+namespace nucleotide_count
+{
 
-}  // namespace nucleotide_count
+    std::map<char, int> count(std::string sequence);
 
-#endif  // NUCLEOTIDE_COUNT_H
+} // namespace nucleotide_count
+
+#endif // NUCLEOTIDE_COUNT_H
