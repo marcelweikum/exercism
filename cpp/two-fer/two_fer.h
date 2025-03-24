@@ -1,10 +1,11 @@
 #if !defined(TWO_FER_H)
 #define TWO_FER_H
 
-namespace two_fer {
+#include <string>
 
-// TODO: add your solution here
+namespace two_fer
+{
+    std::string two_fer(std::string name = "");
+} // namespace two_fer
 
-}  // namespace two_fer
-
-#endif  // TWO_FER_H
+#endif // TWO_FER_H
