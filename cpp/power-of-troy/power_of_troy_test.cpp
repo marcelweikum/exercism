@@ -7,7 +7,8 @@
 
 using namespace troy;
 
-TEST_CASE("Create a human", "[task_1]") {
+TEST_CASE("Create a human", "[task_1]")
+{
     human lanfeust{};
 
     REQUIRE(lanfeust.possession == nullptr);
@@ -15,9 +16,8 @@ TEST_CASE("Create a human", "[task_1]") {
     REQUIRE(lanfeust.influenced_by == nullptr);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
-TEST_CASE("Give a new artifact to a human", "[task_2]") {
+TEST_CASE("Give a new artifact to a human", "[task_2]")
+{
     human lanfeust{};
     std::string pommel{"Magohamoth Ivory Sword Pommel"};
 
@@ -27,7 +27,8 @@ TEST_CASE("Give a new artifact to a human", "[task_2]") {
     REQUIRE(lanfeust.possession->name == pommel);
 }
 
-TEST_CASE("Exchange artifact with another human", "[task_3]") {
+TEST_CASE("Exchange artifact with another human", "[task_3]")
+{
     human zoltan{};
     std::string worldstone_shard{"Soulstone"};
     give_new_artifact(zoltan, worldstone_shard);
@@ -39,7 +40,8 @@ TEST_CASE("Exchange artifact with another human", "[task_3]") {
     REQUIRE(tal_rasha.possession->name == worldstone_shard);
 }
 
-TEST_CASE("Manifest power in a human", "[task_4]") {
+TEST_CASE("Manifest power in a human", "[task_4]")
+{
     human cian{};
     std::string gift_of_night{"heal"};
 
@@ -49,7 +51,8 @@ TEST_CASE("Manifest power in a human", "[task_4]") {
     REQUIRE(cian.own_power->effect == gift_of_night);
 }
 
-TEST_CASE("Use power on another human", "[task_5]") {
+TEST_CASE("Use power on another human", "[task_5]")
+{
     human cian{};
     manifest_power(cian, "heal");
     human lanfeust{};
@@ -60,20 +63,23 @@ TEST_CASE("Use power on another human", "[task_5]") {
     REQUIRE(lanfeust.influenced_by == cian.own_power);
 }
 
-TEST_CASE("Check power intensity of person without power", "[task_6]") {
+TEST_CASE("Check power intensity of person without power", "[task_6]")
+{
     human cixi{};
 
     REQUIRE(power_intensity(cixi) == 0);
 }
 
-TEST_CASE("Check power intensity when not in use", "[task_6]") {
+TEST_CASE("Check power intensity when not in use", "[task_6]")
+{
     human nicolede{};
     manifest_power(nicolede, "enchantment");
 
     REQUIRE(power_intensity(nicolede) == 1);
 }
 
-TEST_CASE("Check power intensity when used on just one person", "[task_6]") {
+TEST_CASE("Check power intensity when used on just one person", "[task_6]")
+{
     human nicolede{};
     manifest_power(nicolede, "enchantment");
     human hebus{};
@@ -83,7 +89,8 @@ TEST_CASE("Check power intensity when used on just one person", "[task_6]") {
     REQUIRE(power_intensity(nicolede) == 2);
 }
 
-TEST_CASE("Check power intensity when used on group of four", "[task_6]") {
+TEST_CASE("Check power intensity when used on group of four", "[task_6]")
+{
     human sue{};
     human reed{};
     human johnny{};
@@ -100,7 +107,8 @@ TEST_CASE("Check power intensity when used on group of four", "[task_6]") {
     REQUIRE(power_intensity(victor) == 5);
 }
 
-TEST_CASE("Check power intensity drop after usage", "[task_6]") {
+TEST_CASE("Check power intensity drop after usage", "[task_6]")
+{
     human palpatine{};
     manifest_power(palpatine, "force torrent");
 
@@ -115,4 +123,5 @@ TEST_CASE("Check power intensity drop after usage", "[task_6]") {
     REQUIRE(power_intensity(palpatine) == 1);
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
