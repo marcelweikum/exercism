@@ -1,10 +1,11 @@
 #if !defined(HAMMING_H)
 #define HAMMING_H
 
-namespace hamming {
+#include <string>
 
-// TODO: add your solution here
+namespace hamming
+{
+    int compute(std::string first, std::string second);
+} // namespace hamming
 
-}  // namespace hamming
-
-#endif  // HAMMING_H
+#endif // HAMMING_H
