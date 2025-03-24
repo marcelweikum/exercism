@@ -1,10 +1,11 @@
 #if !defined(GRAINS_H)
 #define GRAINS_H
 
-namespace grains {
+namespace grains
+{
+    unsigned long long total();
+    unsigned long long square(int number);
 
-// TODO: add your solution here
+} // namespace grains
 
-}  // namespace grains
-
-#endif  // GRAINS_H
+#endif // GRAINS_H
