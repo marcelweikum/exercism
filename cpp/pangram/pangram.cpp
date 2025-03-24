@@ -1,7 +1,30 @@
 #include "pangram.h"
 
-namespace pangram {
+#include <cctype>
 
-// TODO: add your solution here
+namespace pangram
+{
 
-}  // namespace pangram
+    bool is_pangram(std::string sentence)
+    {
+        std::string alphabet{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+        bool is_present{false};
+        for (char a : alphabet)
+        {
+            is_present = false;
+            for (char s : sentence)
+            {
+                if (toupper(s) == a)
+                {
+                    is_present = true;
+                }
+            }
+            if (is_present == false)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+} // namespace pangram

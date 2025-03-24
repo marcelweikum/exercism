@@ -1,10 +1,13 @@
 #if !defined(PANGRAM_H)
 #define PANGRAM_H
 
-namespace pangram {
+#include <string>
 
-// TODO: add your solution here
+namespace pangram
+{
 
-}  // namespace pangram
+    bool is_pangram(std::string sentence);
 
-#endif  // PANGRAM_H
+} // namespace pangram
+
+#endif // PANGRAM_H
