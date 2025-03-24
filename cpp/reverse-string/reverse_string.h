@@ -1,10 +1,11 @@
 #if !defined(REVERSE_STRING_H)
 #define REVERSE_STRING_H
 
-namespace reverse_string {
+#include <string>
 
-// TODO: add your solution here
+namespace reverse_string
+{
+    std::string reverse_string(std::string string);
+} // namespace reverse_string
 
-}  // namespace reverse_string
-
-#endif  // REVERSE_STRING_H
+#endif // REVERSE_STRING_H
