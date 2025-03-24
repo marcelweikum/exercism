@@ -1,10 +1,14 @@
 #if !defined(RNA_TRANSCRIPTION_H)
 #define RNA_TRANSCRIPTION_H
 
-namespace rna_transcription {
+#include <string>
 
-// TODO: add your solution here
+namespace rna_transcription
+{
 
-}  // namespace rna_transcription
+    char to_rna(char nucleotide);
+    std::string to_rna(std::string nucleotide);
 
-#endif  // RNA_TRANSCRIPTION_H
+} // namespace rna_transcription
+
+#endif // RNA_TRANSCRIPTION_H
