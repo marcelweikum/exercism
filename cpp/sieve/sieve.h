@@ -1,10 +1,13 @@
 #if !defined(SIEVE_H)
 #define SIEVE_H
 
-namespace sieve {
+#include <vector>
 
-// TODO: add your solution here
+namespace sieve
+{
 
-}  // namespace sieve
+    std::vector<int> primes(int n);
 
-#endif  // SIEVE_H
+} // namespace sieve
+
+#endif // SIEVE_H

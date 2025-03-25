@@ -5,7 +5,8 @@
 #include "test/catch.hpp"
 #endif
 
-TEST_CASE("no_primes_under_two") {
+TEST_CASE("no_primes_under_two")
+{
     const std::vector<int> expected{};
 
     const std::vector<int> actual = sieve::primes(1);
@@ -13,8 +14,8 @@ TEST_CASE("no_primes_under_two") {
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-TEST_CASE("find_first_prime") {
+TEST_CASE("find_first_prime")
+{
     const std::vector<int> expected{2};
 
     const std::vector<int> actual = sieve::primes(2);
@@ -22,7 +23,8 @@ TEST_CASE("find_first_prime") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("find_primes_up_to_10") {
+TEST_CASE("find_primes_up_to_10")
+{
     const std::vector<int> expected{2, 3, 5, 7};
 
     const std::vector<int> actual = sieve::primes(10);
@@ -30,7 +32,8 @@ TEST_CASE("find_primes_up_to_10") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("limit_is_prime") {
+TEST_CASE("limit_is_prime")
+{
     const std::vector<int> expected{2, 3, 5, 7, 11, 13};
 
     const std::vector<int> actual = sieve::primes(13);
@@ -38,10 +41,11 @@ TEST_CASE("limit_is_prime") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("find_primes_up_to_1000") {
+TEST_CASE("find_primes_up_to_1000")
+{
     const std::vector<int> expected{
-        2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,  43,
-        47,  53,  59,  61,  67,  71,  73,  79,  83,  89,  97,  101, 103, 107,
+        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43,
+        47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107,
         109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181,
         191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263,
         269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349,
@@ -57,4 +61,5 @@ TEST_CASE("find_primes_up_to_1000") {
 
     REQUIRE(expected == actual);
 }
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
