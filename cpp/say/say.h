@@ -1,10 +1,16 @@
 #if !defined(SAY_H)
 #define SAY_H
 
-namespace say {
+#include <string>
+#include <cstdint>
 
-// TODO: add your solution here
+namespace say
+{
+    std::string in_english(uint64_t n);
 
-}  // namespace say
+    std::string below_hundred(int n);
 
-#endif  // SAY_H
+    std::string below_thousand(int n);
+} // namespace say
+
+#endif // SAY_H
