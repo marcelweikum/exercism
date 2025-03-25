@@ -15,7 +15,8 @@
 using namespace boost::posix_time;
 
 TEST_CASE("date only specification of time",
-          "[92fbe71c-ea52-4fac-bd77-be38023cacf7]") {
+          "[92fbe71c-ea52-4fac-bd77-be38023cacf7]")
+{
     const ptime actual =
         gigasecond::advance(time_from_string("2011-04-25 00:00:00"));
 
@@ -23,9 +24,9 @@ TEST_CASE("date only specification of time",
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("second test for date only specification of time",
-          "[6d86dd16-6f7a-47be-9e58-bb9fb2ae1433]") {
+          "[6d86dd16-6f7a-47be-9e58-bb9fb2ae1433]")
+{
     const auto actual =
         gigasecond::advance(time_from_string("1977-06-13 00:00:00"));
 
@@ -34,7 +35,8 @@ TEST_CASE("second test for date only specification of time",
 }
 
 TEST_CASE("third test for date only specification of time",
-          "[77eb8502-2bca-4d92-89d9-7b39ace28dd5]") {
+          "[77eb8502-2bca-4d92-89d9-7b39ace28dd5]")
+{
     const auto actual =
         gigasecond::advance(time_from_string("1959-07-19 00:00:00"));
 
@@ -42,7 +44,8 @@ TEST_CASE("third test for date only specification of time",
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("full time specified", "[c9d89a7d-06f8-4e28-a305-64f1b2abc693]") {
+TEST_CASE("full time specified", "[c9d89a7d-06f8-4e28-a305-64f1b2abc693]")
+{
     const auto actual =
         gigasecond::advance(time_from_string("2015-01-24 22:00:00"));
 
@@ -51,11 +54,13 @@ TEST_CASE("full time specified", "[c9d89a7d-06f8-4e28-a305-64f1b2abc693]") {
 }
 
 TEST_CASE("full time with day roll-over",
-          "[09d4e30e-728a-4b52-9005-be44a58d9eba]") {
+          "[09d4e30e-728a-4b52-9005-be44a58d9eba]")
+{
     const auto actual =
         gigasecond::advance(time_from_string("2015-01-24 23:59:59"));
 
     const ptime expected(time_from_string("2046-10-03 01:46:39"));
     REQUIRE(expected == actual);
 }
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
