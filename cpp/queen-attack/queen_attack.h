@@ -1,10 +1,27 @@
 #if !defined(QUEEN_ATTACK_H)
 #define QUEEN_ATTACK_H
 
-namespace queen_attack {
+#include <utility>
+#include <stdexcept>
 
-// TODO: add your solution here
+namespace queen_attack
+{
 
-}  // namespace queen_attack
+    class chess_board
+    {
+    public:
+        chess_board(std::pair<int, int> white, std::pair<int, int> black);
 
-#endif  // QUEEN_ATTACK_H
+        bool can_attack() const;
+
+        std::pair<int, int> white() const;
+        std::pair<int, int> black() const;
+
+    private:
+        std::pair<int, int> white_;
+        std::pair<int, int> black_;
+    };
+
+} // namespace queen_attack
+
+#endif // QUEEN_ATTACK_H
