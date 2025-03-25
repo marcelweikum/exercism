@@ -1,7 +1,36 @@
 #include "nth_prime.h"
 
-namespace nth_prime {
+#include <vector>
+#include <stdexcept>
 
-// TODO: add your solution here
+namespace nth_prime
+{
+    bool is_prime(int number)
+    {
+        if (number <= 1)
+            return false;
+        for (int i{2}; i * i <= number; ++i)
+        {
+            if (number % i == 0)
+                return false;
+        }
+        return true;
+    }
 
-}  // namespace nth_prime
+    int nth(int n)
+    {
+        if (n <= 0)
+            throw std::domain_error("There is no zeroth prime");
+
+        int count{};
+        int number{1};
+
+        while (count < n)
+        {
+            ++number;
+            if (is_prime(number))
+                ++count;
+        }
+        return number;
+    }
+} // namespace nth_prime
