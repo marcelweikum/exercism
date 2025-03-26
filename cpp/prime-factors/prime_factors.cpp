@@ -1,7 +1,25 @@
 #include "prime_factors.h"
 
-namespace prime_factors {
+namespace prime_factors
+{
 
-// TODO: add your solution here
+    std::vector<long long> of(long number)
+    {
+        std::vector<long long> numbers{};
 
-}  // namespace prime_factors
+        for (long i{2}; i <= number;)
+        {
+            if (number % i == 0)
+            {
+                numbers.push_back(i);
+                number = number / i;
+            }
+            else
+            {
+                ++i;
+            }
+        }
+        return numbers;
+    }
+
+} // namespace prime_factors

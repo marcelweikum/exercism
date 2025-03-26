@@ -1,10 +1,13 @@
 #if !defined(PRIME_FACTORS_H)
 #define PRIME_FACTORS_H
 
-namespace prime_factors {
+#include <vector>
 
-// TODO: add your solution here
+namespace prime_factors
+{
 
-}  // namespace prime_factors
+    std::vector<long long> of(long number);
 
-#endif  // PRIME_FACTORS_H
+} // namespace prime_factors
+
+#endif // PRIME_FACTORS_H
