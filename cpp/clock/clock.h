@@ -1,10 +1,22 @@
 #if !defined(CLOCK_H)
 #define CLOCK_H
 
-namespace date_independent {
+#include <string>
 
-// TODO: add your solution here
+namespace date_independent
+{
 
-}  // namespace date_independent
+    class clock
+    {
+    public:
+        clock(int hour, int minute);
+        static std::string at(int hour, int minute);
 
-#endif  // CLOCK_H
+    private:
+        int hour_;
+        int minute_;
+    };
+
+} // namespace date_independent
+
+#endif // CLOCK_H

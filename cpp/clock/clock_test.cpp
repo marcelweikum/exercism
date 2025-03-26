@@ -8,7 +8,8 @@
 
 using namespace std;
 
-struct timeTest {
+struct timeTest
+{
     int hour;
     int minute;
     string expected;
@@ -38,7 +39,8 @@ vector<timeTest> timeCases = {
      "negative hour and minutes both roll over continuously"},
 };
 
-struct addTest {
+struct addTest
+{
     int hour;
     int minute;
     int add;
@@ -66,12 +68,14 @@ vector<addTest> addCases = {
 };
 
 // Construct two separate clocks, set times, test if they are equal.
-struct hm {
+struct hm
+{
     int hour;
     int minute;
 };
 
-struct equalTest {
+struct equalTest
+{
     string msg;
     hm c1;
     hm c2;
@@ -171,14 +175,17 @@ vector<equalTest> equalCases = {
     },
 };
 
-string errorMsg(string expected, string actual, string test) {
+string errorMsg(string expected, string actual, string test)
+{
     stringstream ret;
     ret << "[" << expected << " != " << actual << "] test case: " << test;
     return ret.str();
 }
 
-TEST_CASE("time_tests") {
-    for (timeTest t : timeCases) {
+TEST_CASE("time_tests")
+{
+    for (timeTest t : timeCases)
+    {
         const auto actual =
             string(date_independent::clock::at(t.hour, t.minute));
 
@@ -188,8 +195,10 @@ TEST_CASE("time_tests") {
 }
 
 #if defined(EXERCISM_RUN_ALL_TESTS)
-TEST_CASE("add_tests") {
-    for (addTest a : addCases) {
+TEST_CASE("add_tests")
+{
+    for (addTest a : addCases)
+    {
         const auto actual =
             string(date_independent::clock::at(a.hour, a.minute).plus(a.add));
 
@@ -198,15 +207,20 @@ TEST_CASE("add_tests") {
     }
 }
 
-TEST_CASE("equal_tests") {
-    for (equalTest e : equalCases) {
+TEST_CASE("equal_tests")
+{
+    for (equalTest e : equalCases)
+    {
         const auto clock1 = date_independent::clock::at(e.c1.hour, e.c1.minute);
         const auto clock2 = date_independent::clock::at(e.c2.hour, e.c2.minute);
 
-        if (e.expected) {
+        if (e.expected)
+        {
             INFO(errorMsg(string(clock1), string(clock2), e.msg));
             REQUIRE(clock1 == clock2);
-        } else {
+        }
+        else
+        {
             INFO("[" << string(clock1) << " == " << string(clock2)
                      << "] test case: " << e.msg);
             REQUIRE(clock1 != clock2);
