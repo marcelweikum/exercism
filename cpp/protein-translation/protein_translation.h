@@ -1,10 +1,14 @@
 #if !defined(PROTEIN_TRANSLATION_H)
 #define PROTEIN_TRANSLATION_H
 
-namespace protein_translation {
+#include <vector>
+#include <string>
 
-// TODO: add your solution here
+namespace protein_translation
+{
 
-}  // namespace protein_translation
+    std::vector<std::string> proteins(std::string sequence);
 
-#endif  // PROTEIN_TRANSLATION_H
+} // namespace protein_translation
+
+#endif // PROTEIN_TRANSLATION_H
