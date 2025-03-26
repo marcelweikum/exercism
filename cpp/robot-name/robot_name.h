@@ -1,10 +1,23 @@
 #if !defined(ROBOT_NAME_H)
 #define ROBOT_NAME_H
 
-namespace robot_name {
+#include <string>
 
-// TODO: add your solution here
+namespace robot_name
+{
 
-}  // namespace robot_name
+    class robot
+    {
+    public:
+        robot();
+        std::string name() const;
+        void reset();
 
-#endif  // ROBOT_NAME_H
+    private:
+        std::string name_;
+        std::string generate_name() const;
+    };
+
+} // namespace robot_name
+
+#endif // ROBOT_NAME_H
