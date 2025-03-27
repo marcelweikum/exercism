@@ -62,6 +62,9 @@
         "algorithm": "cpp",
         "utility": "cpp",
         "unordered_set": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "list": "cpp",
+        "source_location": "cpp",
+        "strstream": "cpp"
     }
 }
