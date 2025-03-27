@@ -1,10 +1,14 @@
 #if !defined(BEER_SONG_H)
 #define BEER_SONG_H
 
-namespace beer_song {
+#include <string>
 
-// TODO: add your solution here
+namespace beer_song
+{
 
-}  // namespace beer_song
+    std::string verse(int line);
+    std::string sing(int from, int to = 0);
 
-#endif  // BEER_SONG_H
+} // namespace beer_song
+
+#endif // BEER_SONG_H
