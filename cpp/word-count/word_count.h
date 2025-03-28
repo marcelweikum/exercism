@@ -1,10 +1,16 @@
 #if !defined(WORD_COUNT_H)
 #define WORD_COUNT_H
 
-namespace word_count {
+#include <vector>
+#include <string>
+#include <map>
 
-// TODO: add your solution here
+namespace word_count
+{
 
-}  // namespace word_count
+    std::map<std::string, int> words(std::string word_list);
+    std::vector<std::string> get_words(std::string words);
 
-#endif  // WORD_COUNT_H
+} // namespace word_count
+
+#endif // WORD_COUNT_H
