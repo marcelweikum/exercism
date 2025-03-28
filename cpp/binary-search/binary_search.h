@@ -1,10 +1,13 @@
 #if !defined(BINARY_SEARCH_H)
 #define BINARY_SEARCH_H
 
-namespace binary_search {
+#include <vector>
 
-// TODO: add your solution here
+namespace binary_search
+{
 
-}  // namespace binary_search
+    int find(std::vector<int> list, int number);
 
-#endif  // BINARY_SEARCH_H
+} // namespace binary_search
+
+#endif // BINARY_SEARCH_H
