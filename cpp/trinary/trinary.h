@@ -1,10 +1,13 @@
 #if !defined(TRINARY_H)
 #define TRINARY_H
 
-namespace trinary {
+#include <string>
 
-// TODO: add your solution here
+namespace trinary
+{
 
-}  // namespace trinary
+    int to_decimal(std::string trinary);
 
-#endif  // TRINARY_H
+} // namespace trinary
+
+#endif // TRINARY_H
