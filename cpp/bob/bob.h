@@ -1,10 +1,13 @@
 #if !defined(BOB_H)
 #define BOB_H
 
-namespace bob {
+#include <string>
 
-// TODO: add your solution here
+namespace bob
+{
 
-}  // namespace bob
+    std::string hey(std::string sentence);
 
-#endif  // BOB_H
+} // namespace bob
+
+#endif // BOB_H
