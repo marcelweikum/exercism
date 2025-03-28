@@ -1,10 +1,14 @@
 #if !defined(ATBASH_CIPHER_H)
 #define ATBASH_CIPHER_H
 
-namespace atbash_cipher {
+#include <string>
 
-// TODO: add your solution here
+namespace atbash_cipher
+{
 
-}  // namespace atbash_cipher
+    std::string encode(std::string message);
+    std::string decode(std::string secret);
 
-#endif  // ATBASH_CIPHER_H
+} // namespace atbash_cipher
+
+#endif // ATBASH_CIPHER_H
