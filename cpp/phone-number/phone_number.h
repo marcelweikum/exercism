@@ -1,10 +1,21 @@
 #if !defined(PHONE_NUMBER_H)
 #define PHONE_NUMBER_H
 
-namespace phone_number {
+#include <string>
 
-// TODO: add your solution here
+namespace phone_number
+{
 
-}  // namespace phone_number
+    class phone_number
+    {
+    public:
+        phone_number(std::string number);
+        std::string number();
 
-#endif  // PHONE_NUMBER_H
+    private:
+        std::string phone_number_;
+    };
+
+} // namespace phone_number
+
+#endif // PHONE_NUMBER_H
