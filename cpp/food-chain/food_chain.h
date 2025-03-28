@@ -1,10 +1,15 @@
 #if !defined(FOOD_CHAIN_H)
 #define FOOD_CHAIN_H
 
-namespace food_chain {
+#include <string>
 
-// TODO: add your solution here
+namespace food_chain
+{
 
-}  // namespace food_chain
+    std::string verse(int line);
+    std::string verses(int from, int to);
+    std::string sing();
 
-#endif  // FOOD_CHAIN_H
+} // namespace food_chain
+
+#endif // FOOD_CHAIN_H
