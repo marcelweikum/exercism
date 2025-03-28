@@ -1,10 +1,14 @@
 #if !defined(SERIES_H)
 #define SERIES_H
 
-namespace series {
+#include <vector>
+#include <string>
 
-// TODO: add your solution here
+namespace series
+{
 
-}  // namespace series
+    std::vector<std::string> slice(std::string input, size_t length);
 
-#endif  // SERIES_H
+} // namespace series
+
+#endif // SERIES_H
