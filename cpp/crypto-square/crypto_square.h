@@ -1,10 +1,23 @@
 #if !defined(CRYPTO_SQUARE_H)
 #define CRYPTO_SQUARE_H
 
-namespace crypto_square {
+#include <string>
 
-// TODO: add your solution here
+namespace crypto_square
+{
 
-}  // namespace crypto_square
+    class cipher
+    {
+    public:
+        cipher(std::string sentence);
+        std::string normalized_cipher_text();
 
-#endif  // CRYPTO_SQUARE_H
+    private:
+        std::string sentence_;
+        size_t c_;
+        size_t r_;
+    };
+
+} // namespace crypto_square
+
+#endif // CRYPTO_SQUARE_H
