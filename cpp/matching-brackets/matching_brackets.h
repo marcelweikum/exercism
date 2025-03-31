@@ -1,10 +1,13 @@
 #if !defined(MATCHING_BRACKETS_H)
 #define MATCHING_BRACKETS_H
 
-namespace matching_brackets {
+#include <string>
 
-// TODO: add your solution here
+namespace matching_brackets
+{
 
-}  // namespace matching_brackets
+    bool check(std::string sentence);
 
-#endif  // MATCHING_BRACKETS_H
+} // namespace matching_brackets
+
+#endif // MATCHING_BRACKETS_H
