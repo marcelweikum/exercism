@@ -1,10 +1,11 @@
 #if !defined(ARMSTRONG_NUMBERS_H)
 #define ARMSTRONG_NUMBERS_H
 
-namespace armstrong_numbers {
+namespace armstrong_numbers
+{
 
-// TODO: add your solution here
+    bool is_armstrong_number(int number);
 
-}  // namespace armstrong_numbers
+} // namespace armstrong_numbers
 
-#endif  // ARMSTRONG_NUMBERS_H
+#endif // ARMSTRONG_NUMBERS_H

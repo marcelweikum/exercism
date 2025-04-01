@@ -1,7 +1,22 @@
 #include "armstrong_numbers.h"
 
-namespace armstrong_numbers {
+#include <string>
+#include <cmath>
 
-// TODO: add your solution here
+namespace armstrong_numbers
+{
 
-}  // namespace armstrong_numbers
+    bool is_armstrong_number(int number)
+    {
+        std::string n{std::to_string(number)};
+        size_t exponent{n.size()};
+        int sum{};
+
+        for (char c : n)
+        {
+            sum += pow(c - '0', exponent);
+        }
+        return number == sum;
+    }
+
+} // namespace armstrong_numbers
