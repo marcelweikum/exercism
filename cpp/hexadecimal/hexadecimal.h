@@ -1,10 +1,13 @@
 #if !defined(HEXADECIMAL_H)
 #define HEXADECIMAL_H
 
-namespace hexadecimal {
+#include <string>
 
-// TODO: add your solution here
+namespace hexadecimal
+{
 
-}  // namespace hexadecimal
+    int convert(std::string h_number);
 
-#endif  // HEXADECIMAL_H
+} // namespace hexadecimal
+
+#endif // HEXADECIMAL_H
