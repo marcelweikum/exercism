@@ -1,10 +1,13 @@
 #if !defined(BINARY_H)
 #define BINARY_H
 
-namespace binary {
+#include <string>
 
-// TODO: add your solution here
+namespace binary
+{
 
-}  // namespace binary
+    int convert(std::string b_number);
 
-#endif  // BINARY_H
+} // namespace binary
+
+#endif // BINARY_H
