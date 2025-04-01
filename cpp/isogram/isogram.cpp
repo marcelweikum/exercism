@@ -1,7 +1,30 @@
 #include "isogram.h"
 
-namespace isogram {
+#include <unordered_set>
 
-// TODO: add your solution here
+namespace isogram
+{
 
-}  // namespace isogram
+    bool is_isogram(std::string word)
+    {
+        std::unordered_set<char> seen;
+        for (char c : word)
+        {
+            if (c == ' ' || c == '-')
+            {
+                continue;
+            }
+
+            if (seen.count(tolower(c)))
+            {
+                return false;
+            }
+            else
+            {
+                seen.insert(tolower(c));
+            }
+        }
+        return true;
+    }
+
+} // namespace isogram

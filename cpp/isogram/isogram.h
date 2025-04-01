@@ -1,10 +1,13 @@
 #if !defined(ISOGRAM_H)
 #define ISOGRAM_H
 
-namespace isogram {
+#include <string>
 
-// TODO: add your solution here
+namespace isogram
+{
 
-}  // namespace isogram
+    bool is_isogram(std::string word);
 
-#endif  // ISOGRAM_H
+} // namespace isogram
+
+#endif // ISOGRAM_H
