@@ -1,7 +1,30 @@
 #include "acronym.h"
 
-namespace acronym {
+namespace acronym
+{
 
-// TODO: add your solution here
+    std::string acronym(std::string word)
+    {
+        std::string result{};
+        bool is_break = true;
 
-}  // namespace acronym
+        for (char c : word)
+        {
+            if (std::isalpha(c))
+            {
+                if (is_break)
+                {
+                    result += std::toupper(c);
+                    is_break = false;
+                }
+            }
+            else if (c != '\'')
+            {
+                is_break = true;
+            }
+        }
+
+        return result;
+    }
+
+} // namespace acronym

@@ -1,10 +1,13 @@
 #if !defined(ACRONYM_H)
 #define ACRONYM_H
 
-namespace acronym {
+#include <string>
 
-// TODO: add your solution here
+namespace acronym
+{
 
-}  // namespace acronym
+    std::string acronym(std::string word);
 
-#endif  // ACRONYM_H
+} // namespace acronym
+
+#endif // ACRONYM_H
