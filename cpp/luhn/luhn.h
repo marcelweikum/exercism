@@ -1,10 +1,13 @@
 #if !defined(LUHN_H)
 #define LUHN_H
 
-namespace luhn {
+#include <string>
 
-// TODO: add your solution here
+namespace luhn
+{
 
-}  // namespace luhn
+    bool valid(std::string number);
 
-#endif  // LUHN_H
+} // namespace luhn
+
+#endif // LUHN_H
