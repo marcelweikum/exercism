@@ -1,7 +1,28 @@
 #include "darts.h"
 
-namespace darts {
+namespace darts
+{
 
-// TODO: add your solution here
+    int score(double x, double y)
+    {
+        double squared{x * x + y * y};
 
-}  // namespace darts
+        if (squared <= 1) // 1^2
+        {
+            return 10;
+        }
+        else if (squared <= 25) // 5^2
+        {
+            return 5;
+        }
+        else if (squared <= 100) // 10^2
+        {
+            return 1;
+        }
+        else // out
+        {
+            return 0;
+        }
+    }
+
+} // namespace darts
