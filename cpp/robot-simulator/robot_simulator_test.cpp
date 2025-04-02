@@ -10,7 +10,8 @@ using robot_simulator::Robot;
 
 // Robot-Simulator exercise test case data version 3.1.0
 
-TEST_CASE("A_robots_is_created_with_a_position_and_a_direction") {
+TEST_CASE("A_robots_is_created_with_a_position_and_a_direction")
+{
     const Robot r;
 
     const std::pair<int, int> expected_robot_position{0, 0};
@@ -18,8 +19,8 @@ TEST_CASE("A_robots_is_created_with_a_position_and_a_direction") {
     REQUIRE(Bearing::NORTH == r.get_bearing());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-TEST_CASE("Negative_positions_are_allowed") {
+TEST_CASE("Negative_positions_are_allowed")
+{
     const std::pair<int, int> robot_position{-1, -1};
     const Bearing robot_bearing{Bearing::SOUTH};
     const Robot r{robot_position, robot_bearing};
@@ -29,7 +30,8 @@ TEST_CASE("Negative_positions_are_allowed") {
     REQUIRE(Bearing::SOUTH == r.get_bearing());
 }
 
-TEST_CASE("Changes_the_direction_from_north_to_east") {
+TEST_CASE("Changes_the_direction_from_north_to_east")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::NORTH};
     Robot r{robot_position, robot_bearing};
@@ -41,7 +43,8 @@ TEST_CASE("Changes_the_direction_from_north_to_east") {
     REQUIRE(Bearing::EAST == r.get_bearing());
 }
 
-TEST_CASE("Changes_the_direction_from_east_to_south") {
+TEST_CASE("Changes_the_direction_from_east_to_south")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::EAST};
     Robot r{robot_position, robot_bearing};
@@ -53,7 +56,8 @@ TEST_CASE("Changes_the_direction_from_east_to_south") {
     REQUIRE(Bearing::SOUTH == r.get_bearing());
 }
 
-TEST_CASE("Changes_the_direction_from_south_to_west") {
+TEST_CASE("Changes_the_direction_from_south_to_west")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::SOUTH};
     Robot r{robot_position, robot_bearing};
@@ -65,7 +69,8 @@ TEST_CASE("Changes_the_direction_from_south_to_west") {
     REQUIRE(Bearing::WEST == r.get_bearing());
 }
 
-TEST_CASE("Changes_the_direction_from_west_to_north") {
+TEST_CASE("Changes_the_direction_from_west_to_north")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::WEST};
     Robot r{robot_position, robot_bearing};
@@ -77,7 +82,8 @@ TEST_CASE("Changes_the_direction_from_west_to_north") {
     REQUIRE(Bearing::NORTH == r.get_bearing());
 }
 
-TEST_CASE("Changes_the_direction_from_north_to_west") {
+TEST_CASE("Changes_the_direction_from_north_to_west")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::NORTH};
     Robot r{robot_position, robot_bearing};
@@ -89,7 +95,8 @@ TEST_CASE("Changes_the_direction_from_north_to_west") {
     REQUIRE(Bearing::WEST == r.get_bearing());
 }
 
-TEST_CASE("Changes_the_direction_from_west_to_south") {
+TEST_CASE("Changes_the_direction_from_west_to_south")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::WEST};
     Robot r{robot_position, robot_bearing};
@@ -101,7 +108,8 @@ TEST_CASE("Changes_the_direction_from_west_to_south") {
     REQUIRE(Bearing::SOUTH == r.get_bearing());
 }
 
-TEST_CASE("Changes_the_direction_from_south_to_east") {
+TEST_CASE("Changes_the_direction_from_south_to_east")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::SOUTH};
     Robot r{robot_position, robot_bearing};
@@ -113,7 +121,8 @@ TEST_CASE("Changes_the_direction_from_south_to_east") {
     REQUIRE(Bearing::EAST == r.get_bearing());
 }
 
-TEST_CASE("Changes_the_direction_from_east_to_north") {
+TEST_CASE("Changes_the_direction_from_east_to_north")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::EAST};
     Robot r{robot_position, robot_bearing};
@@ -125,7 +134,8 @@ TEST_CASE("Changes_the_direction_from_east_to_north") {
     REQUIRE(Bearing::NORTH == r.get_bearing());
 }
 
-TEST_CASE("Increases_the_y_coordinate_by_one_when_facing_north") {
+TEST_CASE("Increases_the_y_coordinate_by_one_when_facing_north")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::NORTH};
     Robot r{robot_position, robot_bearing};
@@ -137,7 +147,8 @@ TEST_CASE("Increases_the_y_coordinate_by_one_when_facing_north") {
     REQUIRE(Bearing::NORTH == r.get_bearing());
 }
 
-TEST_CASE("Decreases_the_y_coordinate_by_one_when_facing_south") {
+TEST_CASE("Decreases_the_y_coordinate_by_one_when_facing_south")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::SOUTH};
     Robot r{robot_position, robot_bearing};
@@ -149,7 +160,8 @@ TEST_CASE("Decreases_the_y_coordinate_by_one_when_facing_south") {
     REQUIRE(Bearing::SOUTH == r.get_bearing());
 }
 
-TEST_CASE("Increases_the_x_coordinate_by_one_when_facing_east") {
+TEST_CASE("Increases_the_x_coordinate_by_one_when_facing_east")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::EAST};
     Robot r{robot_position, robot_bearing};
@@ -161,7 +173,8 @@ TEST_CASE("Increases_the_x_coordinate_by_one_when_facing_east") {
     REQUIRE(Bearing::EAST == r.get_bearing());
 }
 
-TEST_CASE("Decreases_the_x_coordinate_by_one_when_facing_west") {
+TEST_CASE("Decreases_the_x_coordinate_by_one_when_facing_west")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::WEST};
     Robot r{robot_position, robot_bearing};
@@ -173,7 +186,8 @@ TEST_CASE("Decreases_the_x_coordinate_by_one_when_facing_west") {
     REQUIRE(Bearing::WEST == r.get_bearing());
 }
 
-TEST_CASE("Instructions_to_move_east_and_north_from_readme") {
+TEST_CASE("Instructions_to_move_east_and_north_from_readme")
+{
     const std::pair<int, int> robot_position{7, 3};
     const Bearing robot_bearing{Bearing::NORTH};
     Robot r{robot_position, robot_bearing};
@@ -185,7 +199,8 @@ TEST_CASE("Instructions_to_move_east_and_north_from_readme") {
     REQUIRE(Bearing::WEST == r.get_bearing());
 }
 
-TEST_CASE("Instructions_to_move_west_and_north") {
+TEST_CASE("Instructions_to_move_west_and_north")
+{
     const std::pair<int, int> robot_position{0, 0};
     const Bearing robot_bearing{Bearing::NORTH};
     Robot r{robot_position, robot_bearing};
@@ -197,7 +212,8 @@ TEST_CASE("Instructions_to_move_west_and_north") {
     REQUIRE(Bearing::WEST == r.get_bearing());
 }
 
-TEST_CASE("Instructions_to_move_west_and_south") {
+TEST_CASE("Instructions_to_move_west_and_south")
+{
     const std::pair<int, int> robot_position{2, -7};
     const Bearing robot_bearing{Bearing::EAST};
     Robot r{robot_position, robot_bearing};
@@ -209,7 +225,8 @@ TEST_CASE("Instructions_to_move_west_and_south") {
     REQUIRE(Bearing::SOUTH == r.get_bearing());
 }
 
-TEST_CASE("Instructions_to_move_east_and_north") {
+TEST_CASE("Instructions_to_move_east_and_north")
+{
     const std::pair<int, int> robot_position{8, 4};
     const Bearing robot_bearing{Bearing::SOUTH};
     Robot r{robot_position, robot_bearing};
@@ -220,4 +237,5 @@ TEST_CASE("Instructions_to_move_east_and_north") {
     REQUIRE(expected_robot_position == r.get_position());
     REQUIRE(Bearing::NORTH == r.get_bearing());
 }
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
