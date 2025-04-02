@@ -1,10 +1,13 @@
 #if !defined(SCRABBLE_SCORE_H)
 #define SCRABBLE_SCORE_H
 
-namespace scrabble_score {
+#include <string>
 
-// TODO: add your solution here
+namespace scrabble_score
+{
 
-}  // namespace scrabble_score
+    int score(std::string word);
 
-#endif  // SCRABBLE_SCORE_H
+} // namespace scrabble_score
+
+#endif // SCRABBLE_SCORE_H
