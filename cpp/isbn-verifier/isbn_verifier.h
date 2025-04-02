@@ -1,10 +1,13 @@
 #if !defined(ISBN_VERIFIER_H)
 #define ISBN_VERIFIER_H
 
-namespace isbn_verifier {
+#include <string>
 
-// TODO: add your solution here
+namespace isbn_verifier
+{
 
-}  // namespace isbn_verifier
+    bool is_valid(std::string isbn);
 
-#endif  // ISBN_VERIFIER_H
+} // namespace isbn_verifier
+
+#endif // ISBN_VERIFIER_H
