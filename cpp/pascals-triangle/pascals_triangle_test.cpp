@@ -5,7 +5,8 @@
 #include "test/catch.hpp"
 #endif
 
-TEST_CASE("zero_rows") {
+TEST_CASE("zero_rows")
+{
     const std::vector<std::vector<int>> expected;
 
     const std::vector<std::vector<int>> actual{
@@ -14,8 +15,8 @@ TEST_CASE("zero_rows") {
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-TEST_CASE("single_row") {
+TEST_CASE("single_row")
+{
     const std::vector<std::vector<int>> expected{{1}};
 
     const std::vector<std::vector<int>> actual{
@@ -24,7 +25,8 @@ TEST_CASE("single_row") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("two_rows") {
+TEST_CASE("two_rows")
+{
     const std::vector<std::vector<int>> expected{{1}, {1, 1}};
 
     const std::vector<std::vector<int>> actual{
@@ -33,7 +35,8 @@ TEST_CASE("two_rows") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("three_rows") {
+TEST_CASE("three_rows")
+{
     const std::vector<std::vector<int>> expected{{1}, {1, 1}, {1, 2, 1}};
 
     const std::vector<std::vector<int>> actual{
@@ -42,7 +45,8 @@ TEST_CASE("three_rows") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("four_rows") {
+TEST_CASE("four_rows")
+{
     const std::vector<std::vector<int>> expected{
         {1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}};
 
@@ -52,7 +56,8 @@ TEST_CASE("four_rows") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("five_rows") {
+TEST_CASE("five_rows")
+{
     const std::vector<std::vector<int>> expected{
         {1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}, {1, 4, 6, 4, 1}};
 
@@ -62,10 +67,10 @@ TEST_CASE("five_rows") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("six_rows") {
+TEST_CASE("six_rows")
+{
     const std::vector<std::vector<int>> expected{
-        {1},          {1, 1},          {1, 2, 1},
-        {1, 3, 3, 1}, {1, 4, 6, 4, 1}, {1, 5, 10, 10, 5, 1}};
+        {1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}, {1, 4, 6, 4, 1}, {1, 5, 10, 10, 5, 1}};
 
     const std::vector<std::vector<int>> actual{
         pascals_triangle::generate_rows(6)};
@@ -73,7 +78,8 @@ TEST_CASE("six_rows") {
     REQUIRE(expected == actual);
 }
 
-TEST_CASE("ten_rows") {
+TEST_CASE("ten_rows")
+{
     const std::vector<std::vector<int>> expected{
         {1},
         {1, 1},
@@ -92,4 +98,5 @@ TEST_CASE("ten_rows") {
     REQUIRE(expected == actual);
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
