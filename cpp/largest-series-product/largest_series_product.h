@@ -1,10 +1,13 @@
 #if !defined(LARGEST_SERIES_PRODUCT_H)
 #define LARGEST_SERIES_PRODUCT_H
 
-namespace largest_series_product {
+#include <string>
 
-// TODO: add your solution here
+namespace largest_series_product
+{
 
-}  // namespace largest_series_product
+    int largest_product(std::string input, int span);
 
-#endif  // LARGEST_SERIES_PRODUCT_H
+} // namespace largest_series_product
+
+#endif // LARGEST_SERIES_PRODUCT_H
