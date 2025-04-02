@@ -1,9 +1,26 @@
 #if !defined(BANK_ACCOUNT_H)
 #define BANK_ACCOUNT_H
 
-namespace Bankaccount {
-class Bankaccount {};  // class Bankaccount
+#include <mutex>
 
-}  // namespace Bankaccount
+namespace Bankaccount
+{
+    class Bankaccount
+    {
+    public:
+        Bankaccount() : is_opened_{false}, balance_{} {};
+        void open();
+        void close();
+        int balance();
+        void withdraw(int amount);
+        void deposit(int amount);
 
-#endif  // BANK_ACCOUNT_H
+    private:
+        bool is_opened_;
+        int balance_;
+        std::mutex mutex_;
+    }; // class Bankaccount
+
+} // namespace Bankaccount
+
+#endif // BANK_ACCOUNT_H
