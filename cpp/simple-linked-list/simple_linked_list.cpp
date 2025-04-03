@@ -2,31 +2,57 @@
 
 #include <stdexcept>
 
-namespace simple_linked_list {
+namespace simple_linked_list
+{
 
-std::size_t List::size() const {
-    // TODO: Return the correct size of the list.
-    return 0;
-}
+    std::size_t List::size() const
+    {
+        return current_size;
+    }
 
-void List::push(int entry) {
-    // TODO: Implement a function that pushes an Element with `entry` as data to
-    // the front of the list.
-}
+    void List::push(int entry)
+    {
+        Element *new_elem = new Element(entry);
+        new_elem->next = head;
+        head = new_elem;
+        ++current_size;
+    }
 
-int List::pop() {
-    // TODO: Implement a function that returns the data value of the first
-    // element in the list then discard that element.
-    return 0;
-}
+    int List::pop()
+    {
+        Element *temp = head;
+        head = head->next;
+        int value = temp->data;
+        delete temp;
+        --current_size;
+        return value;
+    }
 
-void List::reverse() {
-    // TODO: Implement a function to reverse the order of the elements in the
-    // list.
-}
+    void List::reverse()
+    {
+        Element *prev = nullptr;
+        Element *current = head;
+        Element *next = nullptr;
 
-List::~List() {
-    // TODO: Ensure that all resources are freed on destruction
-}
+        while (current != nullptr)
+        {
+            next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
+        }
 
-}  // namespace simple_linked_list
+        head = prev;
+    }
+
+    List::~List()
+    {
+        while (head != nullptr)
+        {
+            Element *temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+
+} // namespace simple_linked_list
