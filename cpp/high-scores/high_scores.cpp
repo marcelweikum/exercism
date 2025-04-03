@@ -2,26 +2,39 @@
 
 #include <algorithm>
 
-namespace arcade {
+namespace arcade
+{
 
-std::vector<int> HighScores::list_scores() {
-    // TODO: Return all scores for this session.
-    return {0, 1, 2};
-}
+    std::vector<int> HighScores::list_scores()
+    {
+        return scores;
+    }
 
-int HighScores::latest_score() {
-    // TODO: Return the latest score for this session.
-    return 0;
-}
+    int HighScores::latest_score()
+    {
+        return scores[scores.size() - 1];
+    }
 
-int HighScores::personal_best() {
-    // TODO: Return the highest score for this session.
-    return 0;
-}
+    int HighScores::personal_best()
+    {
+        int best{};
 
-std::vector<int> HighScores::top_three() {
-    // TODO: Return the top 3 scores for this session in descending order.
-    return {0, 1, 2};
-}
+        for (int n : scores)
+        {
+            if (n > best)
+            {
+                best = n;
+            }
+        }
+        return best;
+    }
 
-}  // namespace arcade
+    std::vector<int> HighScores::top_three()
+    {
+        std::vector<int> three = scores;
+        std::sort(three.begin(), three.end(), std::greater<int>());
+        three = std::vector<int>{three.begin(), three.size() >= 3 ? three.begin() + 3 : three.begin() + three.size()};
+        return three;
+    }
+
+} // namespace arcade
