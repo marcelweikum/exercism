@@ -1,0 +1,10 @@
+// TODO: Define the get_time function
+function get_time with city do
+  set params to {"city": city}
+  set time to fetch("https://timeapi.io/api/time/current/city", params)
+  if my#has_key(time, "error") do
+    return time["error"]
+  else do
+  return concatenate("The time on this ", time["dayOfWeek"], " in ", city, " is ", time["time"])
+  end
+end

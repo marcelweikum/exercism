@@ -1,0 +1,55 @@
+// TODO: Define the count_words function
+function count_words with sentence do
+  return create_dict(sentence)
+end
+
+function all_words with sentence do
+  set alphabet to {"a": 0, "b": 0, "c": 0, "d": 0, "e": 0, "f": 0, "g": 0, "h": 0, "i": 0, "j": 0, "k": 0, "l": 0, "m": 0, "n": 0, "o": 0, "p": 0, "q": 0, "r": 0, "s": 0, "t": 0, "u": 0, "v": 0, "w": 0, "x": 0, "y": 0, "z": 0, " ": 0, "'": 0, "1": 0, "2": 0}
+  set string to ""
+  set first_space to false
+  for each letter in to_lower_case(sentence) do
+    if sentence[1] == " " and first_space == false do
+      change letter to "!"
+      change first_space to true
+    end
+    if letter == "," do
+      change letter to " "
+    end
+    if has_key(alphabet, letter) do
+      change string to concatenate(string, letter)
+    end
+  end
+  return string
+end
+
+function list_words with string do
+  set word to ""
+  set list to []
+  for each letter in all_words(string) do
+    if letter == " " do
+      change list to push(list, word)
+      change word to ""
+      continue
+    else do
+      change word to concatenate(word, letter)
+    end
+  end
+  change list to push(list, word)
+  change word to ""
+  return list
+end
+
+function create_dict with list do
+  set dict to {}
+  for each word in list_words(list) do
+    if word == "" do
+      continue
+    end
+    if has_key(dict, word) do
+      change dict[word] to dict[word] + 1
+    else do
+      change dict[word] to 1
+    end
+  end
+  return dict
+end

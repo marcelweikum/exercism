@@ -1,0 +1,37 @@
+function letter_values do
+  set values to [
+    ["AEIOULNRST", 1],
+    ["DG", 2],
+    ["BCMP", 3],
+    ["FHVWY", 4],
+    ["K", 5],
+    ["JX", 8],
+    ["QZ", 10]
+  ]
+
+  set dict to {}
+
+  for each value in values do
+    for each letter in value[1] do
+      change dict[letter] to value[2]
+    end
+  end
+  return dict
+end
+
+function scrabble_score with word do
+  set values to letter_values()
+  set sum to 0
+  for each letter in word do
+    change sum to sum + values[to_upper_case(letter)]
+  end
+  return sum
+end
+
+function to_upper_case with string do
+set new_string to ""
+set alphabet to {"a": "A", "b": "B", "c": "C", "d": "D", "e": "E", "f": "F", "g": "G", "h": "H", "i": "I", "j": "J", "k": "K", "l": "L", "m": "M", "n": "N", "o": "O", "p": "P", "q": "Q", "r": "R", "s": "S", "t": "T", "u": "U", "v": "V", "w": "W", "x": "X", "y": "Y", "z": "Z", "A": "A", "B": "B", "C": "C", "D": "D", "E": "E", "F": "F", "G": "G", "H": "H", "I": "I", "J": "J", "K": "K", "L": "L", "M": "M", "N": "N", "O": "O", "P": "P", "Q": "Q", "R": "R", "S": "S", "T": "T", "U": "U", "V": "V", "W": "W", "X": "X", "Y": "Y", "Z": "Z"}
+  for each char in string do
+    return alphabet[char]
+  end
+end

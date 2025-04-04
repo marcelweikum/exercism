@@ -1,0 +1,32 @@
+// TODO: Define the is_pangram function
+function is_pangram with sentence do
+  set alphabet to "abcdefghijklmnopqrstuvwxyz"
+  set exists to false
+  for each a_letter in alphabet do
+    change exists to false
+    for each s_letter in to_lower_case(sentence) do
+      if a_letter == s_letter do
+        change exists to true
+        continue
+      end
+    end
+    if exists == false do
+      return false
+    end
+  end
+  return true
+end
+
+function to_lower_case with string do
+  set l_string to ""
+  for each letter in string do
+    if letter == "F" do
+      change l_string to concatenate(l_string, "f")
+    else if letter == "Z" do
+      change l_string to concatenate(l_string, "z")
+    else do
+      change l_string to concatenate(l_string, letter)
+    end
+  end
+  return l_string
+end

@@ -1,0 +1,16 @@
+// TODO: Define the favorite_artists function
+function favorite_artists with username do
+  set params to {}
+  set url to concatenate("https://api.spotify.com/v1/users/", username)
+  set res to fetch(url, params)
+  set dict to {}
+  set names to []
+  if my#has_key(res, "error") do
+    return concatenate("Error: ", res["error"])
+  end
+  for each elem in res["items"] indexed by i do
+  change dict to fetch(elem["urls"]["spotify_api"], params)
+    change names to push(names, dict["name"])
+  end
+  return concatenate(username, "'s most listened to artists are: ", my#to_sentence(names, true), "!")
+end

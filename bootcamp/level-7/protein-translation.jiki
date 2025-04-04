@@ -1,0 +1,31 @@
+// TODO: Define the translate_rna function
+function translate_rna with string do
+  set protein_list to []
+  set dict to {"AUG": "Methionine", "UUU": "Phenylalanine", "UUC": "Phenylalanine", "UUA": "Leucine", "UUG": "Leucine", "UCU": "Serine", "UCC": "Serine", "UCA": "Serine", "UCG": "Serine", "UAU": "Tyrosine", "UAC": "Tyrosine", "UGU": "Cysteine", "UGC": "Cysteine", "UGG": "Tryptophan", "UAA": "STOP", "UAG": "STOP", "UGA": "STOP"}
+  // Split the string into codons
+  set counter to 0
+  set codon to ""
+  set list to []
+  for each letter in string do
+    change codon to concatenate(codon, letter)
+    change counter to counter + 1
+
+    if counter == 3 do
+      change list to push(list, codon)
+      change codon to ""
+      change counter to 0
+    end
+  end
+
+  log list
+  
+  // Find codons in the dictionary and ignore duplicates
+  for each protein in list do
+    if dict[protein] == "STOP" do
+      break
+    else do
+      change protein_list to push(protein_list, dict[protein])
+    end
+  end
+  return protein_list
+end

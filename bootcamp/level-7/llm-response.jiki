@@ -1,0 +1,24 @@
+// TODO: Define the ask_llm function
+function ask_llm with question do
+  set params to {"question": question}
+  set res to fetch("https://myllm.com/api/v2/qanda", params)
+  set answer to ""
+  set certainty to 0
+  set number to 0
+  set time to ""
+  for each letter in res["meta"]["time"] do
+    if letter != "m" and letter != "s" do
+      change time to concatenate(time, letter)
+    end
+  end
+  change time to string_to_number(time) / 1000
+  
+  for each elem in res["response"]["answers"] do
+    change number to string_to_number(elem["certainty"])
+    if number > certainty do
+      change certainty to number
+      change answer to elem["text"]
+    end
+  end
+  return concatenate("The answer to '", question, "' is '", answer, "' (", number_to_string(certainty * 100), "% certainty in ", concatenate(number_to_string(time), "s"), ").")
+end

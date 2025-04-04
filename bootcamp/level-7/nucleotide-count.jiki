@@ -1,0 +1,22 @@
+// TODO: Define the count_nucleotides function
+function count_nucleotides with string do
+  set a to 0
+  set c to 0
+  set g to 0
+  set t to 0
+  for each letter in string do
+    if letter == "A" do
+      change a to a + 1
+    else if letter == "C" do
+      change c to c + 1
+    else if letter == "G" do
+      change g to g + 1
+    else if letter == "T" do
+      change t to t + 1
+    else do
+      return false
+    end
+  end  
+  set dict to { "A": a, "C": c, "G": g, "T": t }
+  return dict
+end

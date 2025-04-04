@@ -1,0 +1,26 @@
+function sieve with number do
+  set list to []
+  set prime_list to []
+  set multiple to 0
+  
+  repeat number - 1 times indexed by i do
+    change list to push(list, i + 1)
+  end
+
+  for each num in list do
+    if num != "X" do
+      change prime_list to push(prime_list, num)
+
+      change multiple to num * num
+      repeat number times do
+        if multiple > number do
+          break
+        end
+        change list[multiple - 1] to "X"
+        change multiple to multiple + num
+      end
+    end
+  end
+
+  return prime_list
+end
