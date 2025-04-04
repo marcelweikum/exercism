@@ -1,0 +1,13 @@
+function find_anagrams with word, possibilities do
+  set result to []
+  set string to ""
+  repeat my#length(possibilities) times indexed by i do
+    change string to my#to_lowercase(possibilities[i])
+    if my#to_lowercase(word) == string do
+      continue
+    else if my#sort_string(my#to_lowercase(word)) == my#sort_string(string) do
+      change result to push(result, possibilities[i])
+    end
+  end
+  return my#sort_list(result)
+end

@@ -1,0 +1,21 @@
+function build_url with description do
+  set descList to my#split(description, " ")
+  if descList[4] == "2024" do
+    set version to "v3"
+  else if descList[4] == "2025" do
+    set version to "v4"
+  end
+  
+  return concatenate("https://api.school.com/", version ,"/grades/", descList[4], "/class-" , descList[2])
+end
+
+function grades_to_pattern with description do
+  set data to fetch(build_url(description), {})
+  if my#length(my#split(data["data"]["teacher"], " ")) > 2 do
+    change data["data"]["teacher"] to concatenate(my#capitalize(my#split(data["data"]["teacher"], " ")[2]), " ", my#capitalize(my#split(data["data"]["teacher"], " ")[3]))
+  else do
+    change data["data"]["teacher"] to my#capitalize(my#split(data["data"]["teacher"], " ")[2])
+  end
+  change data["data"]["grades"] to my#sort_string(my#list_to_string(data["data"]["grades"]))
+  return data["data"]
+end

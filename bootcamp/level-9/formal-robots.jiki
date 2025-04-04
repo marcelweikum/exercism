@@ -1,0 +1,16 @@
+// TODO: Write out the conversation.
+set jeremy to new Robot()
+set nicole to new Robot()
+set sam to new Robot()
+set conversation1 to new FormalConversation(jeremy, nicole)
+set conversation2 to new FormalConversation(sam, jeremy)
+conversation1.exchange_salutations()
+jeremy.say(concatenate("I am ", my#number_to_string(jeremy.age), " years old. How old are you?"))
+nicole.say(concatenate("I am ", my#number_to_string(nicole.age), ". Together we are ", my#number_to_string(jeremy.age + nicole.age), " years old. Wow."))
+jeremy.say("Wow.")
+conversation1.exchange_valedictions()
+
+conversation2.exchange_salutations()
+sam.say("Who was that?")
+jeremy.say(concatenate("That was ", conversation1.get_participant_name(2), "."))
+conversation2.exchange_valedictions()

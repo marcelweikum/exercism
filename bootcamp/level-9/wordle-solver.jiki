@@ -1,0 +1,201 @@
+function is_candidate_valid with candidate, allowedCounts do
+  set freq to {}
+  for each char in candidate indexed by i do
+    if my#has_key(freq, candidate[i]) do
+      change freq[candidate[i]] to freq[candidate[i]] + 1
+    else do
+      change freq[candidate[i]] to 1
+    end
+    if my#has_key(allowedCounts, candidate[i]) and freq[candidate[i]] > allowedCounts[candidate[i]] do
+      return false
+    end
+  end
+  return true
+end
+
+
+function process_guess with target, guess do
+  set result to ["", "", "", "", ""]
+  set targetCounts to {}
+  
+  for each char in target indexed by i do
+    if guess[i] == target[i] do
+      change result[i] to "correct"
+    else do
+      if my#has_key(targetCounts, target[i]) do
+        change targetCounts[target[i]] to targetCounts[target[i]] + 1
+      else do
+        change targetCounts[target[i]] to 1
+      end
+    end
+  end
+  
+  for each char in guess indexed by i do
+    if result[i] == "" do
+      if my#has_key(targetCounts, guess[i]) and targetCounts[guess[i]] > 0 do
+        change result[i] to "present"
+        change targetCounts[guess[i]] to targetCounts[guess[i]] - 1
+      else do
+        change result[i] to "absent"
+      end
+    end
+  end
+  
+  log target
+  log guess
+  log result
+  
+  return result
+end
+
+
+function process_game do
+  set game to new WordleGame()
+  game.draw_board()
+  set word to common_words()[1]
+  set result to []
+  set allowedCounts to {}
+  set foundWord to false
+  
+  set letterStatsCount to {}
+  set letterStatsAbsent to {}
+  
+  repeat 6 times indexed by i do
+    change result to process_guess(game.target_word, word)
+    
+    change letterStatsCount to {}
+    change letterStatsAbsent to {}
+    for each char in word indexed by j do
+      if not my#has_key(letterStatsCount, word[j]) do
+        change letterStatsCount[word[j]] to 0
+        change letterStatsAbsent[word[j]] to false
+      end
+      if result[j] == "correct" or result[j] == "present" do
+        change letterStatsCount[word[j]] to letterStatsCount[word[j]] + 1
+      else if result[j] == "absent" do
+        change letterStatsAbsent[word[j]] to true
+      end
+    end
+    
+    for each uniqueLetter, value in letterStatsCount do
+      if letterStatsAbsent[uniqueLetter] do
+        if my#has_key(allowedCounts, uniqueLetter) do
+          if letterStatsCount[uniqueLetter] < allowedCounts[uniqueLetter] do
+            change allowedCounts[uniqueLetter] to letterStatsCount[uniqueLetter]
+          end
+        else do
+          change allowedCounts[uniqueLetter] to letterStatsCount[uniqueLetter]
+        end
+      end
+    end
+    
+    game.add_word(i, word, result)
+    
+    // All correct -> End game
+    if not my#contains(result, "present") and not my#contains(result, "absent") do
+      break
+    // No "correct" or "present" -> Next word without invalid letters
+    else if not my#contains(result, "correct") and not my#contains(result, "present") do
+      change foundWord to false
+      for each candidate in common_words() do
+        if is_candidate_valid(candidate, allowedCounts) do
+          change word to candidate
+          change foundWord to true
+          break
+        end
+      end
+      if not foundWord do
+        change word to common_words()[1]
+      end
+    else do
+      change word to get_next_word(common_words(), word, result, allowedCounts)
+      if word == "" do
+        change word to common_words()[1]
+      end
+    end
+  end
+end
+
+
+function get_next_word with list, guess, state, allowedCounts do
+  set usedPositions to [false, false, false, false, false]
+  set valid to true
+  set found to false
+  
+  for each candidate in list do
+    if candidate == guess do
+      continue
+    end
+    
+    if not is_candidate_valid(candidate, allowedCounts) do
+      continue
+    end
+    
+    change valid to true
+    change usedPositions to [false, false, false, false, false]
+    
+    // "correct"-letters
+    for each char in guess indexed by i do
+      if state[i] == "correct" do
+        if candidate[i] != guess[i] do
+          change valid to false
+          break
+        else do
+          change usedPositions[i] to true
+        end
+      end
+    end
+    if not valid do
+      continue
+    end
+    
+    // "present"-letters
+    change valid to true
+    for each charg in guess indexed by i do
+      if state[i] == "present" do
+        change found to false
+        for each charc in candidate indexed by j do
+          if j != i and not usedPositions[j] and candidate[j] == guess[i] do
+            change found to true
+            change usedPositions[j] to true
+            break
+          end
+        end
+        if not found do
+          change valid to false
+          break
+        end
+      end
+    end
+    if not valid do
+      continue
+    end
+    
+    // "absent"-letters
+    change valid to true
+    for each charg in guess indexed by i do
+      if state[i] == "absent" do
+        for each charc in candidate indexed by j do
+          if not usedPositions[j] and candidate[j] == guess[i] do
+            change valid to false
+            break
+          end
+        end
+        if not valid do
+          break
+        end
+      end
+    end
+    
+    if valid do
+      return candidate
+    end
+  end
+  
+  log guess
+  log state
+  log allowedCounts
+  log list
+  
+  return "HE-HE-HE-HAA!" // Should never be reached
+end

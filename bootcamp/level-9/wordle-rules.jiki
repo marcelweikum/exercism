@@ -1,0 +1,46 @@
+function process_guess with target, guess do
+  set result to ["", "", "", "", ""]
+  set targetCounts to {}
+  
+  for each char in target indexed by i do
+    if my#has_key(targetCounts, target[i]) do
+      change targetCounts[target[i]] to targetCounts[target[i]] + 1
+    else do
+      change targetCounts[target[i]] to 1
+    end
+  end
+
+  // correct
+  for each char in guess indexed by i do
+    if guess[i] == target[i] do
+      change result[i] to "correct"
+      change targetCounts[guess[i]] to targetCounts[guess[i]] - 1
+    end
+  end
+
+  // present
+  for each char in guess indexed by i do
+    if result[i] == "" do
+      if my#has_key(targetCounts, guess[i]) and targetCounts[guess[i]] > 0 do
+        change result[i] to "present"
+        change targetCounts[guess[i]] to targetCounts[guess[i]] - 1
+      else do
+        change result[i] to "absent"
+      end
+    end
+  end
+
+  log target
+  log guess
+  log result
+  
+  return result
+end
+
+function process_game with secret, guesses do
+  set game to new WordleGame()
+  game.draw_board()
+  for each guess in guesses indexed by i do
+    game.add_word(i, guess, process_guess(secret, guesses[i]))
+  end
+end

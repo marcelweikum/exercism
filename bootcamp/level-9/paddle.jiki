@@ -1,0 +1,85 @@
+// Create an instance of Game
+set game to new Game()
+
+// Create an instance of a Ball
+set ball to game.ball
+set hits to 0
+set start to false
+// Create blocks dynamically
+set blocks to []
+for each i in [0, 1, 2, 3, 4] do
+  game.add_block(new Block(8 + i * 17, 28))
+end
+
+repeat_forever do
+  // If ball hit block
+  if not game.blocks[1].smashed and ball.cx + ball.radius >= game.blocks[1].left and ball.cx + ball.radius <= game.blocks[1].left + game.blocks[1].width and ball.cy - ball.radius <= game.blocks[1].top + game.blocks[1].height and ball.cy + ball.radius >= game.blocks[1].top do
+    change game.blocks[1].smashed to true
+    change hits to hits + 1
+    change ball.y_velocity to -ball.y_velocity
+  else if not game.blocks[2].smashed and ball.cx + ball.radius >= game.blocks[2].left and ball.cx + ball.radius <= game.blocks[2].left + game.blocks[2].width and ball.cy - ball.radius <= game.blocks[2].top + game.blocks[2].height and ball.cy + ball.radius >= game.blocks[2].top do
+    change game.blocks[2].smashed to true
+      change hits to hits + 1
+    change ball.y_velocity to -ball.y_velocity
+  else if not game.blocks[3].smashed and ball.cx + ball.radius >= game.blocks[3].left and ball.cx + ball.radius <= game.blocks[3].left + game.blocks[3].width and ball.cy - ball.radius <= game.blocks[3].top + game.blocks[3].height and ball.cy + ball.radius >= game.blocks[3].top do
+    change game.blocks[3].smashed to true
+      change hits to hits + 1
+    change ball.y_velocity to -ball.y_velocity
+  else if not game.blocks[4].smashed and ball.cx + ball.radius >= game.blocks[4].left and ball.cx + ball.radius <= game.blocks[4].left + game.blocks[4].width and ball.cy - ball.radius <= game.blocks[4].top + game.blocks[4].height and ball.cy + ball.radius >= game.blocks[4].top do
+    change game.blocks[4].smashed to true
+      change hits to hits + 1
+    change ball.y_velocity to -ball.y_velocity
+  else if not game.blocks[5].smashed and ball.cx + ball.radius >= game.blocks[5].left and ball.cx + ball.radius <= game.blocks[5].left + game.blocks[5].width and ball.cy - ball.radius <= game.blocks[5].top + game.blocks[5].height and ball.cy + ball.radius >= game.blocks[5].top do
+    change game.blocks[5].smashed to true
+      change hits to hits + 1
+    change ball.y_velocity to -ball.y_velocity
+  end
+
+  // If ball hit paddle
+  if ball.cx >= game.paddle.cx - game.paddle.width / 2 and ball.cx <= game.paddle.cx + game.paddle.width / 2 do
+    if ball.cy + ball.radius >= game.paddle.cy - game.paddle.height / 2 do
+      if start do
+        change ball.y_velocity to -ball.y_velocity
+      end
+      change start to true
+    end
+  end
+
+  // If ball hit wall horizontally
+  if ball.cx - ball.radius == 0 or ball.cx + ball.radius == 100 do
+    change ball.x_velocity to -ball.x_velocity
+  end
+
+  // If ball hit wall vertically
+  if ball.cy - ball.radius == 0 do
+    change ball.y_velocity to -ball.y_velocity
+  else if ball.cy + ball.radius == 100 do
+    game.game_over("lose")
+  end
+
+  // Paddle follow ball
+  if ball.y_velocity > 0 do
+    if game.paddle.cx > ball.cx do
+      if game.paddle.cx - game.paddle.width / 2 >= 1 do
+        game.paddle.move_left()
+      end
+    else do
+      if game.paddle.cx + game.paddle.width / 2 <= 99 do
+        game.paddle.move_right()
+      end
+    end
+  else do
+    if game.paddle.cx >= 51 do
+      game.paddle.move_left()
+    else if game.paddle.cx <= 49 do
+      game.paddle.move_right()
+    end
+  end
+
+  if hits == 5 do
+    game.game_over("win")
+    break
+  end
+
+  ball.move()
+end

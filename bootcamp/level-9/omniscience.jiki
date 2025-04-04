@@ -1,0 +1,210 @@
+function turn_around do
+  turn_right()
+  turn_right()
+end
+
+function is_blocked with position, direction, sight, maze do
+  set square to look(position, direction, sight, maze)
+  if square.is_wall or square.contents == "💩" or square.contents == "🔥" do
+    return true
+  end
+  return false
+end
+
+
+function can_turn_left with position, direction, maze do
+  if is_blocked(position, direction, "left", maze) do
+    return false
+  end
+  return true
+end
+
+function can_turn_right with position, direction, maze do
+  if is_blocked(position, direction, "right", maze) do
+    return false
+  end
+  return true
+end
+
+function can_move with position, direction, maze do
+  if is_blocked(position, direction, "ahead", maze) do
+    return false
+  end
+  return true
+end
+
+function can_pickup with position, direction, maze do
+  set square to look(position, direction, "down", maze)
+  if square.is_finish do
+    return true
+  else if square.contents == "" or square.is_start do
+    return false
+  end
+  return true
+end
+
+function pickup with dict, position, direction, maze do
+  set emoji to look(position, direction, "down", maze).contents
+  if look(position, direction, "down", maze).is_finish do
+    announce_emojis(dict)
+    break
+  end
+  if my#has_key(dict, emoji) do
+    maze[position[1]][position[2]].remove_emoji()
+    change dict[emoji] to dict[emoji] + 1
+    return dict
+  else do
+    maze[position[1]][position[2]].remove_emoji()
+    change dict[emoji] to 1
+    return dict
+  end
+end
+
+function look with position, direction, sight, maze do
+  set row to position[1]
+  set col to position[2]
+  set max_rows to my#length(maze)
+  set max_cols to my#length(maze[1])
+
+  if sight == "down" do
+    return maze[row][col]
+  end
+  
+  set deltas to {
+    "ahead": {
+      "downward": [1, 0],
+      "leftward": [0, -1],
+      "rightward": [0, 1],
+      "upward": [-1, 0]
+    },
+    "left": {
+      "downward": [0, 1],
+      "leftward": [1, 0],
+      "rightward": [-1, 0],
+      "upward": [0, -1]
+    },
+    "right": {
+      "downward": [0, -1],
+      "leftward": [-1, 0],
+      "rightward": [1, 0],
+      "upward": [0, 1]
+    }
+  }
+
+  set delta to deltas[sight][direction]
+  change row to row + delta[1]
+  change col to col + delta[2]
+
+  if row < 1 or row > max_rows or col < 1 or col > max_cols do
+    // Wall in every scenario
+    return maze[1][2]
+  end
+
+  return maze[row][col]
+end
+
+
+function update_direction with direction, action do
+  if action == "turn_left" do
+    if direction == "downward" do
+      return "rightward"
+    else if direction == "leftward" do
+      return "downward"
+    else if direction == "rightward" do
+      return "upward"
+    else if direction == "upward" do
+      return "leftward"
+    end
+  else if action == "turn_right" do
+    if direction == "downward" do
+      return "leftward"
+    else if direction == "leftward" do
+      return "upward"
+    else if direction == "rightward" do
+      return "downward"
+    else if direction == "upward" do
+      return "rightward"
+    end
+  else if action == "turn_around" do
+    if direction == "downward" do
+      return "upward"
+    else if direction == "leftward" do
+      return "rightward"
+    else if direction == "rightward" do
+      return "leftward"
+    else if direction == "upward" do
+      return "downward"
+    end
+  end
+end
+
+function update_position with position, direction do
+  if direction == "downward" do
+    return [position[1] + 1, position[2]]
+  else if direction == "leftward" do
+    return [position[1], position[2] - 1]
+  else if direction == "rightward" do
+    return [position[1], position[2] + 1]
+  else if direction == "upward" do
+    return [position[1] - 1, position[2]]
+  end
+end
+
+function run_game with start_position, start_direction, squares do
+  set dict to {}
+  set position to start_position
+  set direction to start_direction
+  set maze to squares
+  repeat_until_game_over do
+    if can_pickup(position, direction, maze) do
+      change dict to pickup(dict, position, direction, maze)
+    else if can_turn_left(position, direction, maze) do
+      turn_left()
+      change direction to update_direction(direction, "turn_left")
+      move()
+      change position to update_position(position, direction)
+    else if can_move(position, direction, maze) do
+      move()
+      change position to update_position(position, direction)
+      if can_pickup(position, direction, maze) do
+        change dict to pickup(dict, position, direction, maze)
+      end
+    else if can_turn_right(position, direction, maze) do
+      turn_right()
+      change direction to update_direction(direction, "turn_right")
+      move()
+      change position to update_position(position, direction)
+    else do
+      turn_around()
+      change direction to update_direction(direction, "turn_around")
+    end
+  end
+end
+
+
+function get_start with squares do
+  for each row in squares indexed by i do
+    for each square in row indexed by j do
+      if square.is_start do
+        return [i, j]
+      end
+    end
+  end
+end
+
+set squares to get_initial_maze()
+set start to get_start(squares)
+
+function get_direction with squares, start do
+  if !squares[start[1] + 1][start[2]].is_wall do
+    return "downward"
+  else if !squares[start[1]][start[2] - 1].is_wall do
+    return "leftward"
+  else if !squares[start[1]][start[2] + 1].is_wall do
+    return "rightward"
+  else if !squares[start[1] - 1][start[2]].is_wall do
+    return "upward"
+  end
+end
+
+run_game(start, get_direction(squares, start), squares)
