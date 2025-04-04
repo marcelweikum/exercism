@@ -1,7 +1,12 @@
 #pragma once
 
-namespace resistor_color {
+#include <string>
+#include <vector>
 
-// TODO: add your solution here
+namespace resistor_color
+{
 
-}  // namespace resistor_color
+    int color_code(std::string color);
+    std::vector<std::string> colors();
+
+} // namespace resistor_color
