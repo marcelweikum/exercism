@@ -1,0 +1,17 @@
+// TODO: Define the dna_to_rna function
+function dna_to_rna with dna do
+  set dna_list to ["A", "C", "G", "T"]
+  set rna_list to ["U", "G", "C", "A"]
+  set rna to ""
+  set counter to 1
+  for each nucleotide in dna do
+    change counter to 1
+    for each dna_part in dna_list do
+      if nucleotide == dna_part do
+        change rna to concatenate(rna, rna_list[counter])
+      end
+      change counter to counter + 1
+    end
+  end
+  return rna
+end

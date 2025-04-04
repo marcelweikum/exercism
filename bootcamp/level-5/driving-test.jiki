@@ -1,0 +1,16 @@
+// TODO: Define the did_they_pass function
+function did_they_pass with notes do
+  set minorCount to 0
+  for each symbol in notes do
+  if minorCount >= 5 do
+    return false
+  else do
+    if symbol == "💥" do
+      return false
+    else if symbol == "❌" do
+      change minorCount to minorCount + 1
+    end
+  end
+end
+  return true
+end

@@ -1,0 +1,13 @@
+// TODO: Define the hamming_distance function
+function hamming_distance with dna1, dna2 do
+  set incrementor to 1
+  set counter to 0
+  for each letter in dna1 do
+    if letter != dna2[incrementor] do
+      change counter to counter + 1
+    end
+      change incrementor to incrementor + 1
+  end
+  return counter
+end
+      

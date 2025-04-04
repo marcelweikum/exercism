@@ -1,0 +1,21 @@
+function acronym with input do
+  set alphabet to to_upper_case("abcdefghijklmnopqrstuvwxyz")
+  set acronym to ""
+  set addNext to true
+  change input to to_upper_case(input)
+
+  for each letter in input do
+    if letter == "-" or letter == " " do
+      change addNext to true
+    else do
+      for each sign in alphabet do
+        if letter == sign and addNext == true do
+          change acronym to concatenate(acronym, letter)
+          change addNext to false
+        end
+      end
+    end
+  end
+
+  return acronym
+end

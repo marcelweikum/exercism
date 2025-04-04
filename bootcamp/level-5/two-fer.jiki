@@ -1,0 +1,8 @@
+// TODO: Define the two_fer function
+function two_fer with name do
+  if name != "" do
+    return concatenate("One for ", name, ", one for me.")
+  else do
+    return "One for you, one for me."
+  end
+end

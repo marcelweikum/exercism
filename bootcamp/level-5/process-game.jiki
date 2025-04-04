@@ -1,0 +1,39 @@
+// Create the process_guess function.
+function process_first_guess with secret, guess do
+  log guess
+  set states to []
+  repeat my#length(secret) times indexed by i do
+    if secret[i] == guess[i] do
+      change states to push(states, "correct")
+    else if my#contains(secret, guess[i]) do
+      change states to push(states, "present")
+    else do
+      change states to push(states, "absent")
+    end
+  end
+  color_top_row(states)
+  return states
+end
+
+function process_guess with secret, guess do
+  log guess
+  set states to []
+  repeat my#length(secret) times indexed by i do
+    if secret[i] == guess[i] do
+      change states to push(states, "correct")
+    else if my#contains(secret, guess[i]) do
+      change states to push(states, "present")
+    else do
+      change states to push(states, "absent")
+    end
+  end
+  return states
+end
+
+function process_game with secret, guesses do
+  log guesses
+  log secret
+  repeat my#length(guesses) times indexed by i do
+    color_row(i, process_guess(secret, guesses[i]))
+  end
+end

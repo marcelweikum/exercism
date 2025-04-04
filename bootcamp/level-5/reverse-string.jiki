@@ -1,0 +1,8 @@
+// TODO: Define the reverse function
+function reverse with string do
+  set string2 to ""
+  for each i in string do
+    change string2 to concatenate(i, string2)
+  end
+  return string2
+end
