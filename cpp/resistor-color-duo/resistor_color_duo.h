@@ -1,7 +1,11 @@
 #pragma once
 
-namespace resistor_color_duo {
+#include <vector>
+#include <string>
 
-// TODO: add your solution here
+namespace resistor_color_duo
+{
 
-}  // namespace resistor_color_duo
+    int value(std::vector<std::string> colors);
+
+} // namespace resistor_color_duo
