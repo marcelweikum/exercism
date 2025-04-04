@@ -1,7 +1,11 @@
 #pragma once
 
-namespace diamond {
+#include <vector>
+#include <string>
 
-// TODO: add your solution here
+namespace diamond
+{
 
-}  // namespace diamond
+    std::vector<std::string> rows(char c);
+
+} // namespace diamond
