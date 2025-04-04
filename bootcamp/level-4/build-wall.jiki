@@ -1,0 +1,32 @@
+fill_color_hex("#AA4A44")
+set height to 10
+set width to 20
+set x to 0
+set y to 0
+set brickColls to 10
+set brickRowsEven to 5
+set brickRowsOdd to 6
+set brickEven to false
+
+function build_brick with x, y, width, height do
+  rectangle(x, y, width, height)
+end
+
+repeat brickColls times do
+  if brickEven == false do
+    repeat brickRowsEven times do
+      build_brick(x, y, width, height)
+      change x to x + 20
+    end
+    change x to -10
+    change brickEven to true
+  else do
+    repeat brickRowsOdd times do
+      build_brick(x, y, width, height)
+      change x to x + 20
+    end
+    change x to 0
+    change brickEven to false
+  end
+  change y to y + 10
+end

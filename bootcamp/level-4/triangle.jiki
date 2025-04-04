@@ -1,0 +1,20 @@
+// Create a function call `determine_triangle_type`.
+// It should have three inputs for the three sides of the triangle
+// It must return "invalid", "equilateral", "isosceles" or "scalene".
+function determine_triangle_type with a, b, c do
+  if a <= 0 and b <= 0 and c <= 0 do
+    return "invalid"
+  else if a + b < c or a + c < b or b + c < a do
+    return "invalid"
+  else do
+    if a == b and b == c do
+      return "equilateral"
+    else if a == b or a == c or b == c do
+      return "isosceles"
+    else if a != b and b != c and a != c do
+      return "scalene"
+    else do
+      return "invalid"
+    end
+end
+end
