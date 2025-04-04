@@ -1,0 +1,27 @@
+// The sky
+set sky to new Sky(10)
+// The sun
+set sun to new Sun(80, 20, 10, 12)
+
+// objects for manipulating
+set dimmable to [sky, new Ground(20, 15), new Frame(20, 50, 60, 40, 20), new Roof(50, 30, 60 + 8, 20, 20), new Door(43, 72, 14, 18, 20)]
+set lightable to [new Window(30, 55, 12, 13, 20), new Window(58, 55, 12, 13, 20)]
+
+// sun movement
+repeat 90 times do
+  change sun.cx to sun.cx - 1.2
+  change sun.cy to sun.cy + 1
+end
+
+// window lights
+for each window in lightable do
+  change window.lights to true
+end
+
+// dimming
+repeat 80 times indexed by count do
+  change sky.hue to min(310, sky.hue + 2)
+  for each object in dimmable do
+      change object.brightness to 100 - count
+  end
+end

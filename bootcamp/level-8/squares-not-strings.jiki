@@ -1,0 +1,83 @@
+function turn_around do
+  turn_right()
+  turn_right()
+end
+
+function is_blocked with direction do
+  if look(direction).is_wall or look(direction).contents == "💩" or look(direction).contents == "🔥" or !look(direction).in_maze do
+    return true
+  end
+  return false
+end
+
+function can_turn_left do
+  if is_blocked("left") do
+    return false
+  end
+  return true
+end
+
+function can_turn_right do
+  if is_blocked("right") do
+    return false
+  end
+  return true
+end
+
+function can_move do
+  if is_blocked("ahead") do
+    return false
+  end
+  return true
+end
+
+function can_pickup do
+  if look("down").is_finish do
+    return true
+  end
+  if look("down").contents == "" or look("down").is_start do
+    return false
+  end
+  return true
+end
+
+function pickup with dict do
+  set emoji to look("down").contents
+  if look("down").is_finish do
+    announce_emojis(dict)
+    break
+  end
+  if has_key(dict, emoji) do
+    remove_emoji()
+    change dict[emoji] to dict[emoji] + 1
+    return dict
+  else do
+    remove_emoji()
+    change dict[emoji] to 1
+    return dict
+  end
+end
+
+function run_game do
+  set dict to {}
+  repeat_until_game_over do
+    if can_pickup() do
+      change dict to pickup(dict)
+    else if can_turn_left() do
+      turn_left()
+      move()
+    else if can_move() do
+      move()
+      if can_pickup() do
+        change dict to pickup(dict)
+      end
+    else if can_turn_right() do
+      turn_right()
+      move()
+    else do
+      turn_around()
+    end
+  end
+end
+
+run_game()

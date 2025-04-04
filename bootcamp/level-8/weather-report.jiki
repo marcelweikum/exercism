@@ -1,0 +1,106 @@
+function draw_element with position, type do
+  set left to 25
+  set top to 4
+  set size to 0.5
+  set counter to 0
+
+  for each elem in type do
+    change counter to counter + 1
+  end
+
+  if position != 1 do
+      change top to 66
+      change size to 0.3
+    end
+    
+    if position == 2 do
+      change left to 1
+    else if position == 3 do
+      change left to 35
+    else if position == 4 do
+      change left to 69
+    end
+
+  // sky
+  fill_color_hex("#ADD8E6")
+  rectangle(left, top, 100 * size, 100 * size)  
+
+  for each element in type do
+  
+    // here starts the drawing
+
+    // Check for big sun
+    if element == "sun" do
+      if counter == 1 do
+        // Big Sun
+        fill_color_hex("#ffed06")
+        circle(left + 50 * size, top + 50 * size, 25 * size)
+      else do
+        // Small Sun
+        fill_color_hex("yellow")
+        circle(left + 75 * size, top + 30 * size, 15 * size)
+      end
+    else if element == "cloud" do
+      // Cloud
+      fill_color_hex("white")
+      circle(left + 55 * size, top + 40 * size, 20 * size)
+      circle(left + 40 * size, top + 40 * size, 15 * size)
+      circle(left + 25 * size, top + 50 * size, 10 * size)
+      circle(left + 75 * size, top + 50 * size, 10 * size)
+      rectangle(left + 25 * size, top + 50 * size, 50 * size, 10 * size)
+    else if element == "rain" do
+      // Rain Drops
+      fill_color_hex("#11BBFF")
+      ellipse(left + 50 * size, top + 70 * size, 3 * size, 5 * size)
+      ellipse(left + 30 * size, top + 70 * size, 3 * size, 5 * size)
+      ellipse(left + 70 * size, top + 70 * size, 3 * size, 5 * size)
+      ellipse(left + 40 * size, top + 80 * size, 3 * size, 5 * size)
+      ellipse(left + 60 * size, top + 80 * size, 3 * size, 5 * size)
+    else if element == "snow" do
+      // Snowflakes
+      fill_color_hex("#11BBFF")
+      circle(left + 30 * size, top + 70 * size, 5 * size)
+      circle(left + 50 * size, top + 70 * size, 5 * size)
+      circle(left + 70 * size, top + 70 * size, 5 * size)
+      circle(left + 40 * size, top + 80 * size, 5 * size)
+      circle(left + 60 * size, top + 80 * size, 5 * size)
+    end
+  end
+  change counter to 0
+end
+
+function description_to_elements with description do
+  if description == "sunny" do
+    return ["sun"]
+  else if description == "dull" do
+    return ["cloud"]
+  else if description == "miserable" do
+    return ["cloud", "rain"]
+  else if description == "hopeful" do
+    return ["sun", "cloud"]
+  else if description == "rainbow-territory" do
+    return ["sun", "cloud", "rain"]
+  else if description == "exciting" do
+    return ["cloud", "snow"]
+  else do
+    return ["sun", "cloud", "snow"]
+  end
+end
+
+function draw_weather with description do
+  set summary to description["meteorological"]["2025"]["02"]["25"]["weather"]["summary"]
+  set data to {}
+  for each time in summary do
+    if time["time"] == "06:00" or time["time"] == "07:00" or time["time"] == "08:00" or time["time"] == "09:00" do
+      change data[time["time"]] to time["description"]
+    end
+  end
+  set first to description_to_elements(data["06:00"])
+  set second to description_to_elements(data["07:00"])
+  set third to description_to_elements(data["08:00"])
+  set fourth to description_to_elements(data["09:00"])
+  draw_element(1, first)
+  draw_element(2, second)
+  draw_element(3, third)
+  draw_element(4, fourth)
+end

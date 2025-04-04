@@ -1,0 +1,54 @@
+// Create an instance of a Ball
+set ball to new Ball()
+set hits to 0
+
+set start to false
+
+// Create blocks dynamically
+set blocks to []
+for each i in [0, 1, 2, 3, 4] do
+  change blocks to push(blocks, new Block(8 + i * 17, 31))
+end
+
+repeat_until_game_over do
+if not blocks[1].smashed and ball.cx + ball.radius >= blocks[1].left and ball.cx + ball.radius <= blocks[1].left + blocks[1].width and ball.cy - ball.radius <= blocks[1].top + blocks[1].height and ball.cy + ball.radius >= blocks[1].top do
+  change blocks[1].smashed to true
+  change hits to hits + 1
+  change ball.y_velocity to -ball.y_velocity
+else if not blocks[2].smashed and ball.cx + ball.radius >= blocks[2].left and ball.cx + ball.radius <= blocks[2].left + blocks[2].width and ball.cy - ball.radius <= blocks[2].top + blocks[2].height and ball.cy + ball.radius >= blocks[2].top do
+  change blocks[2].smashed to true
+    change hits to hits + 1
+  change ball.y_velocity to -ball.y_velocity
+else if not blocks[3].smashed and ball.cx + ball.radius >= blocks[3].left and ball.cx + ball.radius <= blocks[3].left + blocks[3].width and ball.cy - ball.radius <= blocks[3].top + blocks[3].height and ball.cy + ball.radius >= blocks[3].top do
+  change blocks[3].smashed to true
+    change hits to hits + 1
+  change ball.y_velocity to -ball.y_velocity
+else if not blocks[4].smashed and ball.cx + ball.radius >= blocks[4].left and ball.cx + ball.radius <= blocks[4].left + blocks[4].width and ball.cy - ball.radius <= blocks[4].top + blocks[4].height and ball.cy + ball.radius >= blocks[4].top do
+  change blocks[4].smashed to true
+    change hits to hits + 1
+  change ball.y_velocity to -ball.y_velocity
+else if not blocks[5].smashed and ball.cx + ball.radius >= blocks[5].left and ball.cx + ball.radius <= blocks[5].left + blocks[5].width and ball.cy - ball.radius <= blocks[5].top + blocks[5].height and ball.cy + ball.radius >= blocks[5].top do
+  change blocks[5].smashed to true
+    change hits to hits + 1
+  change ball.y_velocity to -ball.y_velocity
+end
+
+  if ball.cx - ball.radius == 0 or ball.cx + ball.radius == 100 do
+    change ball.x_velocity to -ball.x_velocity
+  end
+
+  if ball.cy - ball.radius == 0 or ball.cy + ball.radius == 100 do
+    if start == true do
+      change ball.y_velocity to -ball.y_velocity
+    else do
+      change start to true
+      move_ball(ball)
+    end
+  end
+
+  if hits == 5 do
+    break
+  end
+
+  move_ball(ball)
+end

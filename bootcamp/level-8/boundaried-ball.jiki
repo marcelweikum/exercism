@@ -1,0 +1,21 @@
+// Create an instance of a Ball and move it around
+set ball to new Ball()
+set hits to 0
+repeat_until_game_over do
+  if ball.cx == 0 + 3 or ball.cx == 100 - 3 do
+    if hits == 7 do
+      break
+    end
+    change ball.x_velocity to -ball.x_velocity
+    change hits to hits + 1
+  end
+  if ball.cy == 0 + 3 or ball.cy == 100 - 3 do
+    if hits == 7 do
+      break
+    else if hits != 0 do
+      change ball.y_velocity to -ball.y_velocity
+      change hits to hits + 1
+    end
+  end
+  move_ball(ball)
+end
