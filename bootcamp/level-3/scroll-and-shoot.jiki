@@ -1,0 +1,35 @@
+// Initialize variables
+set moveCounter to 0
+set directionRight to true
+
+// Main loop
+repeat_until_game_over do
+  // Adjust direction based on moveCounter
+  if moveCounter >= 10 do
+    change directionRight to false
+  else if moveCounter <= 0 do
+    change directionRight to true
+  end
+
+  // Check if an alien is above
+  if is_alien_above() do
+    shoot()
+    // Move in the current direction and then back
+    if directionRight == true do
+      move_right()
+      move_left()
+    else do
+      move_left()
+      move_right()
+    end
+  else do
+    // Move in the current direction and update moveCounter
+    if directionRight == true do
+      move_right()
+      change moveCounter to moveCounter + 1
+    else do
+      move_left()
+      change moveCounter to moveCounter - 1
+    end
+  end
+end

@@ -1,0 +1,17 @@
+// This is a scarily blank bit of starting code...
+set player1 to get_player_1_choice()
+set player2 to get_player_2_choice()
+set whoWon to "player_1"
+
+if player1 equals player2 do
+  change whoWon to "tie"
+
+else if player2 equals "rock" and player1 equals "scissors" do
+  change whoWon to "player_2"
+else if player2 equals "paper" and player1 equals "rock" do
+  change whoWon to "player_2"
+else if player2 equals "scissors" and player1 equals "paper" do
+  change whoWon to "player_2"
+end
+
+announce_result(whoWon)

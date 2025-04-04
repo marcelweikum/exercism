@@ -1,0 +1,20 @@
+// TODO: Use the current_time_hour() and
+// current_time_minute() functions to get the 
+// current time and minutes for the scenario.
+set formattedHour to current_time_hour()
+set isPm to "am"
+// Convert the hour into "12 hour" format and 
+if current_time_hour() >= 12 do
+  if current_time_hour() > 12 do
+    change formattedHour to current_time_hour() - 12
+  end
+  change isPm to "pm"
+end
+
+if current_time_hour() == 0 and current_time_minute() == 0 do
+change formattedHour to 12
+end
+// determine whether it's "am" or "pm".
+
+// TODO: Use display_time to update the clock
+display_time(formattedHour, current_time_minute(), isPm)
