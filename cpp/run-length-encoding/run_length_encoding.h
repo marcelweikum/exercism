@@ -1,7 +1,11 @@
 #pragma once
 
-namespace run_length_encoding {
+#include <string>
 
-// TODO: add your solution here
+namespace run_length_encoding
+{
 
-}  // namespace run_length_encoding
+    std::string encode(std::string s);
+    std::string decode(std::string s);
+
+} // namespace run_length_encoding
