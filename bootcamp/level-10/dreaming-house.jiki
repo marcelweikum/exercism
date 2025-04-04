@@ -1,0 +1,170 @@
+// Write your classes here!
+class Sky do
+private property hue
+private property brightness
+private property hsl
+private property rectangle
+
+  constructor do
+    set this.hue to 190
+    set this.brightness to 50
+    set this.hsl to new HSLColor(this.hue, 100, this.brightness)
+    set this.rectangle to new Rectangle(0, 0, 100, 80, this.hsl, 1)
+    change this.rectangle.brightness to 50
+  end
+
+  public method increase_hue_by with num do
+    change this.hue to this.hue + num
+    change this.rectangle.hsl to new HSLColor(this.hue, 100, this.brightness)
+  end
+
+  public method change_brightness with num do
+    change this.brightness to num / 2
+    change this.rectangle.brightness to num / 2
+  end
+end
+
+class Sun do
+private property cx
+private property cy
+private property circle
+
+  constructor with cx, cy do
+    set this.cx to cx
+    set this.cy to cy
+    set this.circle to new Circle(this.cx, this.cy, 10, "#ffff00", 1)
+  end
+
+  public method move_by with x, y do
+    change this.circle.cx to this.circle.cx + x
+    change this.circle.cy to this.circle.cy + y
+  end
+end
+
+class Ground do
+private property height
+private property brightness
+private property hsl
+private property rectangle
+
+  constructor with height do
+    set this.height to height
+    set this.brightness to 50
+    set this.hsl to new HSLColor(110, 50, this.brightness)
+    set this.rectangle to new Rectangle(0, 80, 100, 100, this.hsl, 2)
+  end
+
+  public method change_brightness with num do
+    change this.brightness to num
+    change this.rectangle.brightness to num
+  end
+end
+
+class Frame do
+private property left
+private property top
+private property width
+private property height
+private property hsl
+private property brightness
+private property rectangle
+
+  constructor with left, top, width, height do
+    set this.left to left
+    set this.top to top
+    set this.width to width
+    set this.height to height
+    set this.brightness to 50
+    set this.hsl to new HSLColor(25, 25, this.brightness)
+    set this.rectangle to new Rectangle(this.left, this.top, this.width, this.height, this.hsl, 3)
+  end
+
+  public method change_brightness with num do
+    change this.brightness to num
+    change this.rectangle.brightness to num
+  end
+end
+
+class Roof do
+private property width
+private property height
+private property brightness
+private property triangle
+
+  constructor with width, height do
+    set this.width to width
+    set this.height to height
+    set this.brightness to 50
+    set this.triangle to new Triangle(16, 50, 50, 30, 84, 50, "#964b00", 3)
+  end
+
+  public method change_brightness with num do
+    change this.brightness to num
+    change this.triangle.brightness to this.brightness
+  end
+end
+
+class Window do
+private property left
+private property top
+private property hsl
+private property rectangle
+
+  constructor with left, top do
+    set this.left to left
+    set this.top to top
+    set this.hsl to new HSLColor(50, 25, 55)
+    set this.rectangle to new Rectangle(this.left, this.top, 12, 13, this.hsl, 4)
+  end
+
+  public method turn_lights_on do
+    change this.rectangle.hsl to new HSLColor(56, 100, 50)
+  end
+end
+
+class Door do
+private property left
+private property top
+private property hsl
+private property brightness
+private property rectangle
+private property circle
+
+  constructor with left, top do
+    set this.left to left
+    set this.top to top
+    set this.brightness to 50
+    set this.hsl to new HSLColor(255, 5, this.brightness)
+    set this.rectangle to new Rectangle(this.left, this.top, 14, 18, this.hsl, 4)
+    set this.circle to new Circle(this.left + 12, this.top + 9, 1, "#ccc", 5)
+  end
+
+  public method change_brightness with num do
+    change this.brightness to num
+    change this.rectangle.brightness to num
+    change this.circle.brightness to this.brightness
+  end
+end
+
+set sky to new Sky()
+set sun to new Sun(80, 20)
+set ground to new Ground(20)
+set roof to new Roof(68, 20)
+set frame to new Frame(20, 50, 60, 40)
+set left_window to new Window(30, 55)
+set right_window to new Window(58, 55)
+set door to new Door(43, 72)
+
+repeat 70 times do  
+  sun.move_by(-1.2, 1)
+end
+
+left_window.turn_lights_on()
+right_window.turn_lights_on()
+
+repeat 80 times indexed by index do
+  sky.increase_hue_by(2)
+  for each part in [ground, sky, roof, frame, door] do
+    part.change_brightness(100 - index)
+  end
+end

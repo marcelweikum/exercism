@@ -1,0 +1,27 @@
+// Create the Clock class here
+class Clock do
+  private property h
+  private property m
+
+  constructor with hours, minutes do
+    set this.h to hours
+    set this.m to minutes
+  end
+
+  public method get_railway_time do
+    return concatenate(my#number_to_string(this.h), ":", my#number_to_string(this.m))
+  end
+
+  public method get_duodecimal_time do
+    set isPm to "am"
+    // Convert the hour into "12 hour" format and 
+    if this.h >= 12 do
+      if this.h > 12 do
+        change this.h to this.h - 12
+      end
+      change isPm to "pm"
+    end
+    return concatenate(my#number_to_string(this.h), ":", my#number_to_string(this.m), isPm)
+  end
+end
+

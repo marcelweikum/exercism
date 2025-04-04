@@ -1,0 +1,25 @@
+// Make the TameOrGame class
+class TameOrGame do
+  private property num
+
+  constructor with number do
+    set this.num to number
+  end
+
+  public method is_tame do
+    return this.num % 2 == 0
+  end
+
+  public method is_game do
+    return this.num % 2 != 0
+  end
+
+  public method tame_or_game with prefix do
+    if this.is_tame() do
+      set suffix to " is tame."
+    else do
+      set suffix to " is game."
+    end
+    return concatenate(prefix, suffix)
+  end
+end
