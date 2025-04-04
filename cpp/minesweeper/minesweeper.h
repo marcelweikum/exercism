@@ -1,7 +1,11 @@
 #pragma once
 
-namespace minesweeper {
+#include <vector>
+#include <string>
 
-// TODO: add your solution here
+namespace minesweeper
+{
 
-}  // namespace minesweeper
+    std::vector<std::string> annotate(std::vector<std::string> board);
+
+} // namespace minesweeper
