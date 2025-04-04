@@ -1,0 +1,17 @@
+// TODO: Define the shopping_list function
+function shopping_list with fridge, list do
+  set newList to []
+  set isNeeded to true
+  for each needItem in list do
+    for each haveItem in fridge do
+        if needItem == haveItem do
+          change isNeeded to false
+        end
+      end
+    if isNeeded == true do
+      change newList to push(newList, needItem)
+    end
+    change isNeeded to true
+  end
+  return newList
+end

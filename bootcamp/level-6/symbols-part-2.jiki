@@ -1,0 +1,70 @@
+function description_to_elements with description do
+  if description == "sunny" do
+    return ["sun"]
+  else if description == "dull" do
+    return ["cloud"]
+  else if description == "miserable" do
+    return ["cloud", "rain"]
+  else if description == "hopeful" do
+    return ["sun", "cloud"]
+  else if description == "rainbow-territory" do
+    return ["sun", "cloud", "rain"]
+  else if description == "exciting" do
+    return ["cloud", "snow"]
+  else do
+    return ["sun", "cloud", "snow"]
+  end
+end
+
+function draw_weather with description do
+  set weather to description_to_elements(description)
+  set counter to 0
+
+  // Draw the sky
+  fill_color_hex("#ADD8E6") 
+  rectangle(0, 0, 100, 100)
+
+  // Check for big sun
+  for each element in weather do
+  change counter to counter + 1
+  end
+  
+  // Go for it
+  for each element in weather do
+    if element == "sun" do
+      if counter == 1 do
+        // Big Sun
+        fill_color_hex("#ffed06")
+        circle(50,50,25)
+      else do
+        // Small Sun
+        fill_color_hex("yellow")
+        circle(75,30,15)
+      end
+    else if element == "cloud" do
+      // Cloud
+      fill_color_hex("white")
+      circle(55,40,20)
+      circle(40,40,15)
+      circle(25,50,10)
+      circle(75,50,10)
+      rectangle(25,45, 50,15)
+    else if element == "rain" do
+      // Rain Drops
+      fill_color_hex("#11BBFF")
+      ellipse(50,70, 3, 5)
+      ellipse(30,70, 3, 5)
+      ellipse(70,70, 3, 5)
+      ellipse(40,80, 3, 5)
+      ellipse(60,80, 3, 5)
+    else if element == "snow" do
+      // Snowflakes
+      fill_color_hex("#11BBFF")
+      circle(30, 70, 5)
+      circle(50, 70, 5)
+      circle(70, 70, 5)
+      circle(40, 80, 5)
+      circle(60, 80, 5)
+    end
+  end
+end

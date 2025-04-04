@@ -1,0 +1,70 @@
+// TODO: Define the on_guest_list function
+function how_many_names with string do
+set count to 0
+  for each letter in string do
+    if letter == " " do
+      change count to count + 1
+    end
+  end
+return count
+end
+
+function last_name with string do
+  set letter1passed to false
+  set letter2passed to false
+  set last_name to ""
+  if how_many_names(string) == 1 do
+    for each letter in string do
+      if letter1passed do
+      change last_name to concatenate(last_name, letter)
+      end
+  
+      if letter == " " do
+        change letter1passed to true
+      end
+    end
+  else do
+    for each letter in string do
+      if letter1passed and letter2passed do
+      change last_name to concatenate(last_name, letter)
+      end
+  
+      if letter == " " do
+        if letter1passed do
+          change letter2passed to true
+        end
+        change letter1passed to true
+      end
+    end
+  end
+  return last_name
+end
+
+function middle_name with string do
+  set letter1passed to false
+  set last_name to ""
+  if how_many_names(string) == 1 do
+    for each letter in string do
+      if letter1passed do
+      change last_name to concatenate(last_name, letter)
+      end
+  
+      if letter == " " do
+        change letter1passed to true
+      end
+    end
+  end
+  return last_name
+end
+
+function on_guest_list with guest_list, name do
+  for each guest in guest_list do
+    if last_name(guest) == last_name(name) do
+      if how_many_names(name) > 1 do
+        return middle_name(guest) == middle_name(name)
+      end
+      return true
+    end
+  end
+return false
+end

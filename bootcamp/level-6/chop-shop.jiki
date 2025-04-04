@@ -1,0 +1,32 @@
+// TODO: Define the can_fit_in function
+function controlTime with haircut do
+  set timeSum to 0
+  if haircut == "Mohawk" do
+      change timeSum to 20
+    else if haircut == "Slicked-Back Pixie" do
+      change timeSum to 15
+    else if haircut == "Bob" do
+      change timeSum to 25
+    else if haircut == "Shave and Polish" do
+      change timeSum to 15
+    else if haircut == "Afro Trim" do
+      change timeSum to 45
+    else if haircut == "Up-do" do
+      change timeSum to 30
+  end
+  return timeSum
+end
+
+function can_fit_in with queue, haircut, time do
+  set timeSum to controlTime(haircut)
+  
+  for each cut in queue do
+    change timeSum to timeSum + controlTime(cut)
+  end
+  
+  if timeSum > time do
+    return false
+  else do
+    return true
+  end
+end

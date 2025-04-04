@@ -1,0 +1,194 @@
+// Run the Tic-Tac-Toe game
+function run_game with moves do
+  set board to [[0,0,0],[0,0,0],[0,0,0]]
+  set player to "o"
+  set win_pattern to []
+  draw_board()
+
+  for each move in moves do
+    if move == "?" do
+      change move to best_move(board, player)
+    end
+    if board[move[1]][move[2]] != 0 do
+      draw_message("Invalid move!", "error")
+      return
+    end
+
+    change board[move[1]][move[2]] to player
+    change move to get_field(move)
+    draw_xo(move, player, 1)
+
+    change win_pattern to check_win(board, player)
+    if count(win_pattern) > 0 do
+      redraw_final_board(board, win_pattern)
+      draw_message(concatenate("The ", player, "'s won!"), "success")
+      return
+    end
+
+    if is_full(board) do
+      redraw_final_board(board, [])
+      draw_message("The game was a draw!", "success")
+      return
+    end
+
+    if player == "o" do
+      change player to "x"
+    else do
+      change player to "o"
+    end
+  end
+end
+
+// Check if a player won
+function check_win with board, player do
+  set patterns to [[[1,1],[1,2],[1,3]], [[2,1],[2,2],[2,3]], [[3,1],[3,2],[3,3]],
+                  [[1,1],[2,1],[3,1]], [[1,2],[2,2],[3,2]], [[1,3],[2,3],[3,3]],
+                  [[1,1],[2,2],[3,3]], [[1,3],[2,2],[3,1]]]
+  set is_winning to false
+
+  for each pattern in patterns do
+    change is_winning to true
+    for each position in pattern do
+      if board[position[1]][position[2]] != player do
+        change is_winning to false
+      end
+    end
+    if is_winning do
+      return pattern
+    end
+  end
+  return []
+end
+
+// Check if board is full
+function is_full with board do
+  for each row in board do
+    for each cell in row do
+      if cell == 0 do
+        return false
+      end
+    end
+  end
+  return true
+end
+
+// Determine the best move
+function best_move with board, player do
+  set opponent to "x"
+  if player == "x" do
+    change opponent to "o"
+  end
+  
+  set available to []
+  for each row in [1,2,3] do
+    for each col in [1,2,3] do
+      if board[row][col] == 0 do
+        change available to push(available, [row, col])
+      end
+    end
+  end
+
+  for each move in available do
+    change board[move[1]][move[2]] to player
+    if count(check_win(board, player)) > 0 do
+      return move
+    end
+    change board[move[1]][move[2]] to 0
+  end
+
+  for each move in available do
+    change board[move[1]][move[2]] to opponent
+    if count(check_win(board, opponent)) > 0 do
+      return move
+    end
+    change board[move[1]][move[2]] to 0
+  end
+
+  return available[1]
+end
+
+// Draw the Tic-Tac-Toe board
+function draw_board do
+  rectangle(5, 5, 90, 90)
+  line(5, 35, 95, 35)
+  line(5, 65, 95, 65)
+  line(35, 5, 35, 95)
+  line(65, 5, 65, 95)
+end
+
+// Draw X or O on the board
+function draw_xo with coordinates, who, stroke do
+  stroke_width(stroke)
+  set x to coordinates[1]
+  set y to coordinates[2]
+  if who == "x" do   
+    line(x - 10, y - 10, x + 10, y + 10)
+    line(x - 10, y + 10, x + 10, y - 10)
+  else do
+    circle(x, y, 10)
+  end
+end
+
+// Convert grid position to drawing coordinates
+function get_field with coordinates do
+  set x to 0
+  set y to 0
+  if coordinates[1] == 1 do
+    change y to 20
+  else if coordinates[1] == 2 do
+    change y to 50
+  else if coordinates[1] == 3 do
+    change y to 80
+  end
+
+  if coordinates[2] == 1 do
+    change x to 20
+  else if coordinates[2] == 2 do
+    change x to 50
+  else if coordinates[2] == 3 do
+    change x to 80
+  end
+
+  return [x, y]
+end
+
+// Show game messages
+function draw_message with message, type do
+  if type == "error" do
+    fill_color_rgba(200, 0, 0, 0.85)
+  else if type == "success" do
+    fill_color_rgba(96, 79, 205, 0.85)
+  end
+  rectangle(0, 0, 100, 100)
+  write(message)
+end
+
+// Redraw the board after the game ends
+function redraw_final_board with board, win_pattern do
+  set field_coord to [0, 0]
+  stroke_color_hex("#D3D3D3")
+  for each row in [1,2,3] do
+    for each col in [1,2,3] do
+      if board[row][col] != 0 do
+        change field_coord to get_field([row, col])
+        draw_xo(field_coord, board[row][col], 1)
+      end
+    end
+  end
+  if count(win_pattern) > 0 do
+    stroke_color_hex("#604fcd")
+    for each pos in win_pattern do
+      change field_coord to get_field(pos)
+      draw_xo(field_coord, board[pos[1]][pos[2]], 2)
+    end
+  end
+end
+
+// Count elements in an array
+function count with array do
+  set cnt to 0
+  for each elem in array do
+    change cnt to cnt + 1
+  end
+  return cnt
+end

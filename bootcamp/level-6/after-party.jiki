@@ -1,0 +1,41 @@
+// TODO: Define the on_guest_list function
+function length with string do
+  set count to 0
+  for each char in string do
+    change count to count + 1
+  end
+return count
+end
+
+function starts_with with string, comparison do
+  set count to 1
+  repeat length(comparison) times do
+    if string[count] != comparison[count] do
+      return false
+    end
+    change count to count + 1
+  end
+  return true
+end
+
+function name_counter with name do
+  set count to 0
+  for each letter in name do
+    if letter == " " do
+      return count
+    end
+    change count to count + 1
+  end
+  return count
+end
+
+function on_guest_list with guest_list, first_name do
+  for each guest in guest_list do
+    if name_counter(guest) == name_counter(first_name) do
+          if starts_with(guest, first_name) == true do
+      return true
+    end
+    end
+  end
+  return false
+end
