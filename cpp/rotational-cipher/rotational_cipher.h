@@ -2,8 +2,9 @@
 
 #include <string>
 
-namespace rotational_cipher {
+namespace rotational_cipher
+{
 
-// TODO: add your solution here
+    std::string rotate(std::string s, int r);
 
-}  // namespace rotational_cipher
+} // namespace rotational_cipher
