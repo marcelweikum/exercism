@@ -1,7 +1,8 @@
 #pragma once
 
-namespace chicken_coop {
+namespace chicken_coop
+{
 
-// TODO: add your solution here
+    int positions_to_quantity(int eggs);
 
-}  // namespace chicken_coop
+} // namespace chicken_coop

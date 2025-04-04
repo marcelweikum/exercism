@@ -1,7 +1,21 @@
 #include "eliuds_eggs.h"
 
-namespace chicken_coop {
+namespace chicken_coop
+{
 
-// TODO: add your solution here
+    int positions_to_quantity(int eggs)
+    {
+        int count{};
 
-}  // namespace chicken_coop
+        while (eggs > 0)
+        {
+            if (eggs & 1)
+            {
+                ++count;
+            }
+            eggs >>= 1;
+        }
+        return count;
+    }
+
+} // namespace chicken_coop
