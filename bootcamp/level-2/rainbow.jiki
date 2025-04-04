@@ -1,0 +1,18 @@
+// TODO: Set the variables
+set x to 0
+set y to 0
+set width to 1
+set height to 100
+set hue to 0
+set saturation to 50
+set luminance to 50
+
+repeat 100 times do
+  // Change the variables
+  change x to x+1
+  // TODO: Update the color
+  change hue to hue+3
+  // TODO: Draw
+  fill_color_hsl(hue, saturation, luminance)
+  rectangle(x, y, width, height)
+end

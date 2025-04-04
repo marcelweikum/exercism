@@ -1,0 +1,8 @@
+fill_color_hex("#AA4A44")
+set rec_x to 0
+set rec_height to 10
+set rec_width to 20
+repeat 5 times do
+  rectangle(rec_x, 0, rec_width, rec_height)
+  change rec_x to rec_x + rec_width
+end

@@ -1,0 +1,38 @@
+// TODO Set variables here
+set sun_cx to 50
+set sun_cy to 10
+set sun_radius to 5
+set sun_hue to 60
+set sun_saturation to 80
+set sun_lightness to 50
+set sky_hue to 210
+set sky_saturation to 70
+set sky_lightness to 60
+
+repeat 100 times do
+  // TODO: Update the variables here.
+
+  // The sky
+  fill_color_hsl(sky_hue, sky_saturation, sky_lightness)
+  rectangle(0,0,100,100)
+  change sky_hue to sky_hue + 0.3
+  change sky_saturation to sky_saturation + 0.2
+  change sky_lightness to sky_lightness + 0.1
+
+  // The Sun
+  fill_color_hsl(sun_hue, sun_saturation, sun_lightness)
+  circle(sun_cx, sun_cy, sun_radius)
+  change sun_hue to sun_hue - 0.3
+  change sun_saturation to sun_saturation + 0.1
+  change sun_lightness to sun_lightness - 0.1
+  change sun_cy to sun_cy + 1
+  change sun_radius to sun_radius + 0.2
+  
+  // The sea
+  fill_color_hex("#0308ce")
+  rectangle(0,85,100,5)
+  
+  // The sand
+  fill_color_hex("#C2B280")
+  rectangle(0,90,100,10)
+end

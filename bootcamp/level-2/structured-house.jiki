@@ -1,0 +1,82 @@
+// Sky variables
+set sky_color to "#add8e6"
+set sky_left to 0
+set sky_top to 0
+set sky_width to 100
+set sky_height to 100
+
+// House Frame variables
+set house_color to "#f0985b"
+set house_left to 20
+set house_top to 50
+set house_width to 60
+set house_height to 40
+
+// Roof variables
+set roof_color to "#8b4513"
+set roof_overhang to 4
+set roof_left_x to house_left - roof_overhang
+set roof_left_y to house_top
+set roof_center_x to house_top
+set roof_center_y to house_top - 20
+set roof_right_x to house_left + house_width + roof_overhang
+set roof_right_y to house_top
+
+// Grass variables
+set grass_color to "#3cb372"
+set grass_left_x to sky_width - sky_width
+set grass_left_y to sky_width - 20
+set grass_right to sky_width
+
+// Window variables
+set window_color to "#FFFFFF"
+set window_width to 12
+set window_height to 13
+set window_y to house_top + 5
+set window_1_x to house_left + 10
+set window_2_x to house_left + house_width - window_width - 10
+
+// Door variables
+set door_color to "#A0512D"
+set door_width to 14
+set door_height to 18
+set door_x to (house_left + house_width / 2) - door_width / 2
+set door_y to house_top + house_height - door_height
+
+// Knob variables
+set knob_color to "#FFDF00"
+set knob_radius to 1
+set knob_x to door_x + door_width - knob_radius - 1
+set knob_y to (door_y + door_height) - door_height / 2
+
+// The sky
+fill_color_hex(sky_color)
+rectangle(sky_left, sky_top, sky_width, sky_height)
+
+// The grass
+fill_color_hex(grass_color)
+rectangle(grass_left_x, grass_left_y, grass_right, grass_right)
+
+// The frame of the house
+fill_color_hex(house_color)
+rectangle(house_left, house_top, house_width, house_height)
+
+// The roof
+fill_color_hex(roof_color)
+triangle(roof_left_x, roof_left_y, roof_center_x, roof_center_y, roof_right_x, roof_right_y)
+
+// The left window
+fill_color_hex(window_color)
+rectangle(window_1_x , window_y, window_width, window_height)
+
+// The second window
+fill_color_hex(window_color)
+rectangle(window_2_x , window_y, window_width, window_height)
+
+// The door
+fill_color_hex(door_color)
+rectangle(door_x, door_y, door_width, door_height)
+
+// The door knob
+fill_color_hex(knob_color)
+circle(knob_x, knob_y, knob_radius)

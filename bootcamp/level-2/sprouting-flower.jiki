@@ -1,0 +1,73 @@
+  // Flower Variables
+  set flower_color to "white"
+  set flower_cx to 50
+  set flower_cy to 90
+  set flower_r to 0
+
+  // Pistil Variables
+  set pistil_color to "yellow"
+  set pistil_cx to flower_cx
+  set pistil_cy to flower_cy
+  set pistil_r to 0
+
+  // Stem Variables
+  set stem_color to "darkgreen"
+  set stem_x to 50
+  set stem_y to 89
+  set stem_height to 0
+  set stem_width to stem_height / 10
+
+  // Leave Variables
+  set l_leave_x to 50
+  set r_leave_x to 50
+  set leave_y to 90
+  set leave_x_r to 0
+  set leave_y_r to 0
+
+repeat 60 times do
+  // Update Flower
+  change flower_r to flower_r + 0.4
+  change flower_cy to flower_cy - 1
+
+  // Update Pistil
+  change pistil_r to flower_r / 4
+  change pistil_cy to flower_cy
+
+  // Update Stem
+  change stem_y to flower_cy
+  change stem_height to stem_height + 1
+  change stem_width to stem_height / 10
+  change stem_x to stem_x - 0.05
+
+  // Update Leaves
+  change l_leave_x to l_leave_x - 0.25
+  change r_leave_x to r_leave_x + 0.25
+  change leave_y to leave_y - 0.5
+  change leave_x_r to flower_r * 0.5
+  change leave_y_r to flower_r * 0.2
+
+  // Sky
+  fill_color_hex("#ADD8E6") 
+  rectangle(0, 0, 100, 90)
+  
+  // Ground
+  fill_color_hex("green")
+  rectangle(0, 90, 100, 30)
+
+  // Flower Stem
+  fill_color_hex(stem_color)
+  rectangle(stem_x, stem_y, stem_width, stem_height)
+
+  // Flower Head
+  fill_color_hex(flower_color)
+  circle(flower_cx, flower_cy, flower_r)
+
+  // Flower Pistil
+  fill_color_hex(pistil_color)
+  circle(pistil_cx, pistil_cy, pistil_r)
+
+  // Flower Leaves
+  fill_color_hex(stem_color)
+  ellipse(l_leave_x, leave_y, leave_x_r, leave_y_r)
+  ellipse(r_leave_x, leave_y, leave_x_r, leave_y_r)
+end
