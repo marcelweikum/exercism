@@ -1,13 +1,19 @@
 #ifndef KNAPSACK_H
 #define KNAPSACK_H
 
-namespace knapsack {
+#include <vector>
 
-struct Item {
-    int weight;
-    int value;
-};
+namespace knapsack
+{
 
-}  // namespace knapsack
+    struct Item
+    {
+        int weight;
+        int value;
+    };
 
-#endif  // KNAPSACK_H
+    int maximum_value(int weight, std::vector<Item> items);
+
+} // namespace knapsack
+
+#endif // KNAPSACK_H
