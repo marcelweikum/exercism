@@ -1,7 +1,11 @@
 #pragma once
 
-namespace yacht {
+#include <vector>
+#include <string>
 
-// TODO: add your solution here
+namespace yacht
+{
 
-}  // namespace yacht
+    int score(std::vector<int> dices, std::string category);
+
+} // namespace yacht
