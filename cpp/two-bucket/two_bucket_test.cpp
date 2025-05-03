@@ -12,7 +12,8 @@ TEST_CASE(
     // clang-format off
     "Measure using bucket one of size 3 and bucket two of size 5 - start with bucket one",
     // clang-format on
-    "[a6f2b4ba-065f-4dca-b6f0-e3eee51cb661]") {
+    "[a6f2b4ba-065f-4dca-b6f0-e3eee51cb661]")
+{
     auto bucket1_capacity = 3;
     auto bucket2_capacity = 5;
     auto goal_volume = 1;
@@ -26,13 +27,12 @@ TEST_CASE(
     CHECK(actual.other_bucket_volume == 5);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
 TEST_CASE(
     // clang-format off
     "Measure using bucket one of size 3 and bucket two of size 5 - start with bucket two",
     // clang-format on
-    "[6c4ea451-9678-4926-b9b3-68364e066d40]") {
+    "[6c4ea451-9678-4926-b9b3-68364e066d40]")
+{
     auto bucket1_capacity = 3;
     auto bucket2_capacity = 5;
     auto goal_volume = 1;
@@ -48,9 +48,10 @@ TEST_CASE(
 
 TEST_CASE(
     // clang-format off
-    "Measure using bucket one of size 7 and bucket two of size 11 - start with bucket one",
+            "Measure using bucket one of size 7 and bucket two of size 11 - start with bucket one",
     // clang-format on
-    "[3389f45e-6a56-46d5-9607-75aa930502ff]") {
+    "[3389f45e-6a56-46d5-9607-75aa930502ff]")
+{
     auto bucket1_capacity = 7;
     auto bucket2_capacity = 11;
     auto goal_volume = 2;
@@ -66,9 +67,10 @@ TEST_CASE(
 
 TEST_CASE(
     // clang-format off
-    "Measure using bucket one of size 7 and bucket two of size 11 - start with bucket two",
+                    "Measure using bucket one of size 7 and bucket two of size 11 - start with bucket two",
     // clang-format on
-    "[fe0ff9a0-3ea5-4bf7-b17d-6d4243961aa1]") {
+    "[fe0ff9a0-3ea5-4bf7-b17d-6d4243961aa1]")
+{
     auto bucket1_capacity = 7;
     auto bucket2_capacity = 11;
     auto goal_volume = 2;
@@ -86,7 +88,8 @@ TEST_CASE(
     // clang-format off
     "Measure one step using bucket one of size 1 and bucket two of size 3 - start with bucket two",
     // clang-format on
-    "[0ee1f57e-da84-44f7-ac91-38b878691602]") {
+    "[0ee1f57e-da84-44f7-ac91-38b878691602]")
+{
     auto bucket1_capacity = 1;
     auto bucket2_capacity = 3;
     auto goal_volume = 3;
@@ -102,9 +105,10 @@ TEST_CASE(
 
 TEST_CASE(
     // clang-format off
-    "Measure using bucket one of size 2 and bucket two of size 3 - start with bucket one and end with bucket two",
+            "Measure using bucket one of size 2 and bucket two of size 3 - start with bucket one and end with bucket two",
     // clang-format on
-    "[eb329c63-5540-4735-b30b-97f7f4df0f84]") {
+    "[eb329c63-5540-4735-b30b-97f7f4df0f84]")
+{
     auto bucket1_capacity = 2;
     auto bucket2_capacity = 3;
     auto goal_volume = 3;
@@ -119,7 +123,8 @@ TEST_CASE(
 }
 
 TEST_CASE("Not possible to reach the goal",
-          "[449be72d-b10a-4f4b-a959-ca741e333b72]") {
+          "[449be72d-b10a-4f4b-a959-ca741e333b72]")
+{
     auto bucket1_capacity = 6;
     auto bucket2_capacity = 15;
     auto goal_volume = 5;
@@ -130,7 +135,8 @@ TEST_CASE("Not possible to reach the goal",
 }
 
 TEST_CASE("With the same buckets but a different goal, then it is possible",
-          "[aac38b7a-77f4-4d62-9b91-8846d533b054]") {
+          "[aac38b7a-77f4-4d62-9b91-8846d533b054]")
+{
     auto bucket1_capacity = 6;
     auto bucket2_capacity = 15;
     auto goal_volume = 9;
@@ -145,7 +151,8 @@ TEST_CASE("With the same buckets but a different goal, then it is possible",
 }
 
 TEST_CASE("Goal larger than both buckets is impossible",
-          "[74633132-0ccf-49de-8450-af4ab2e3b299]") {
+          "[74633132-0ccf-49de-8450-af4ab2e3b299]")
+{
     auto bucket1_capacity = 5;
     auto bucket2_capacity = 7;
     auto goal_volume = 8;
@@ -155,4 +162,5 @@ TEST_CASE("Goal larger than both buckets is impossible",
                                        goal_volume, start_bucket));
 }
 
-#endif  // EXERCISM_RUN_ALL_TESTS
+#if defined(EXERCISM_RUN_ALL_TESTS)
+#endif // EXERCISM_RUN_ALL_TESTS
