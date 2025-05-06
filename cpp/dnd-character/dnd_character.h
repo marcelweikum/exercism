@@ -1,7 +1,32 @@
 #pragma once
 
-namespace dnd_character {
+namespace dnd_character
+{
+    int ability();
 
-// TODO: add your solution here
+    int modifier(int n);
 
-}  // namespace dnd_character
+    class Character
+    {
+    public:
+        Character()
+        {
+            strength = ability();
+            dexterity = ability();
+            constitution = ability();
+            intelligence = ability();
+            wisdom = ability();
+            charisma = ability();
+            hitpoints = 10 + modifier(constitution);
+        }
+
+        int strength;
+        int dexterity;
+        int constitution;
+        int intelligence;
+        int wisdom;
+        int charisma;
+        int hitpoints;
+    };
+
+} // namespace dnd_character
