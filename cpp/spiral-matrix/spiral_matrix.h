@@ -1,10 +1,14 @@
 #if !defined(SPIRAL_MATRIX_H)
 #define SPIRAL_MATRIX_H
 
-namespace spiral_matrix {
+#include <vector>
+#include <cstdint>
 
-// TODO: add your solution here
+namespace spiral_matrix
+{
 
-}  // namespace spiral_matrix
+    std::vector<std::vector<uint32_t>> spiral_matrix(int n);
 
-#endif  // SPIRAL_MATRIX_H
+} // namespace spiral_matrix
+
+#endif // SPIRAL_MATRIX_H
