@@ -13,15 +13,16 @@
 #endif
 
 TEST_CASE("no texts",
-          "[calculateFrequencies][c054d642-c1fa-4234-8007-9339f2337886]") {
+          "[calculateFrequencies][c054d642-c1fa-4234-8007-9339f2337886]")
+{
     std::vector<std::string_view> const texts = {};
     auto freqs = parallel_letter_frequency::frequency(texts);
     CHECK(freqs.empty());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("one text with one letter",
-          "[calculateFrequencies][818031be-49dc-4675-b2f9-c4047f638a2a]") {
+          "[calculateFrequencies][818031be-49dc-4675-b2f9-c4047f638a2a]")
+{
     std::vector<std::string_view> const texts = {
         "a",
     };
@@ -30,7 +31,8 @@ TEST_CASE("one text with one letter",
 }
 
 TEST_CASE("one text with multiple letters",
-          "[calculateFrequencies][c0b81d1b-940d-4cea-9f49-8445c69c17ae]") {
+          "[calculateFrequencies][c0b81d1b-940d-4cea-9f49-8445c69c17ae]")
+{
     std::vector<std::string_view> const texts = {
         "bbcccd",
     };
@@ -41,7 +43,8 @@ TEST_CASE("one text with multiple letters",
 }
 
 TEST_CASE("two texts with one letter",
-          "[calculateFrequencies][708ff1e0-f14a-43fd-adb5-e76750dcf108]") {
+          "[calculateFrequencies][708ff1e0-f14a-43fd-adb5-e76750dcf108]")
+{
     std::vector<std::string_view> const texts = {
         "e",
         "f",
@@ -52,7 +55,8 @@ TEST_CASE("two texts with one letter",
 }
 
 TEST_CASE("two texts with multiple letters",
-          "[calculateFrequencies][1b5c28bb-4619-4c9d-8db9-a4bb9c3bdca0]") {
+          "[calculateFrequencies][1b5c28bb-4619-4c9d-8db9-a4bb9c3bdca0]")
+{
     std::vector<std::string_view> const texts = {
         "ggh",
         "hhi",
@@ -64,7 +68,8 @@ TEST_CASE("two texts with multiple letters",
 }
 
 TEST_CASE("ignore letter casing",
-          "[calculateFrequencies][6366e2b8-b84c-4334-a047-03a00a656d63]") {
+          "[calculateFrequencies][6366e2b8-b84c-4334-a047-03a00a656d63]")
+{
     std::vector<std::string_view> const texts = {
         "m",
         "M",
@@ -74,7 +79,8 @@ TEST_CASE("ignore letter casing",
 }
 
 TEST_CASE("ignore whitespace",
-          "[calculateFrequencies][92ebcbb0-9181-4421-a784-f6f5aa79f75b]") {
+          "[calculateFrequencies][92ebcbb0-9181-4421-a784-f6f5aa79f75b]")
+{
     std::vector<std::string_view> const texts = {
         "   ",
         "	",
@@ -85,18 +91,32 @@ TEST_CASE("ignore whitespace",
 }
 
 TEST_CASE("ignore punctuation",
-          "[calculateFrequencies][bc5f4203-00ce-4acc-a5fa-f7b865376fd9]") {
+          "[calculateFrequencies][bc5f4203-00ce-4acc-a5fa-f7b865376fd9]")
+{
     std::vector<std::string_view> const texts = {
-        "!", "?", ";", ",", ".",
+        "!",
+        "?",
+        ";",
+        ",",
+        ".",
     };
     auto freqs = parallel_letter_frequency::frequency(texts);
     CHECK(freqs.empty());
 }
 
 TEST_CASE("ignore numbers",
-          "[calculateFrequencies][68032b8b-346b-4389-a380-e397618f6831]") {
+          "[calculateFrequencies][68032b8b-346b-4389-a380-e397618f6831]")
+{
     std::vector<std::string_view> const texts = {
-        "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
     };
     auto freqs = parallel_letter_frequency::frequency(texts);
     CHECK(freqs.empty());
@@ -104,7 +124,8 @@ TEST_CASE("ignore numbers",
 
 TEST_CASE(
     "combination of lower- and uppercase letters, punctuation and white space",
-    "[calculateFrequencies][7b1da046-701b-41fc-813e-dcfb5ee51813]") {
+    "[calculateFrequencies][7b1da046-701b-41fc-813e-dcfb5ee51813]")
+{
     std::vector<std::string_view> const texts = {
         "There, peeping among the cloud-wrack above a dark tower high up in "
         "the mountains, Sam saw a white star twinkle for a while. The beauty "
@@ -139,7 +160,8 @@ TEST_CASE(
 }
 
 TEST_CASE("large texts",
-          "[calculateFrequencies][4727f020-df62-4dcf-99b2-a6e58319cb4f]") {
+          "[calculateFrequencies][4727f020-df62-4dcf-99b2-a6e58319cb4f]")
+{
     std::vector<std::string_view> const texts = {
         "I am a sick man.... I am a spiteful man. I am an unattractive man.\n"
         "I believe my liver is diseased. However, I know nothing at all about "
@@ -437,15 +459,58 @@ TEST_CASE("large texts",
 }
 
 TEST_CASE("many small texts",
-          "[calculateFrequencies][adf8e57b-8e54-4483-b6b8-8b32c115884c]") {
+          "[calculateFrequencies][adf8e57b-8e54-4483-b6b8-8b32c115884c]")
+{
     std::vector<std::string_view> const texts = {
-        "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc",
-        "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc",
-        "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc",
-        "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc",
-        "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc",
-        "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc",
-        "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc", "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
+        "abbccc",
         "abbccc",
     };
     auto freqs = parallel_letter_frequency::frequency(texts);
@@ -453,23 +518,28 @@ TEST_CASE("many small texts",
     CHECK(freqs['b'] == 100);
     CHECK(freqs['c'] == 150);
 }
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
 
 #if defined(EXERCISM_INCLUDE_BENCHMARK)
-TEST_CASE("benchmark") {
+TEST_CASE("benchmark")
+{
     std::vector<std::string> texts;
     std::vector<std::string_view> views;
     std::mt19937 rng;
     std::uniform_int_distribution<> distrib(32, 126);
-    for (auto i = 0; i < 10; ++i) {
+    for (auto i = 0; i < 10; ++i)
+    {
         texts.emplace_back(10 * 1024, 'x');
         std::generate_n(
             texts.back().begin(), texts.back().length(),
-            [&rng, &distrib]() { return static_cast<char>(distrib(rng)); });
+            [&rng, &distrib]()
+            { return static_cast<char>(distrib(rng)); });
         views.emplace_back(texts.back());
     }
 
-    BENCHMARK("10 random texts with 10 KiB each") {
+    BENCHMARK("10 random texts with 10 KiB each")
+    {
         return parallel_letter_frequency::frequency(views);
     };
 }
