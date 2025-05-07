@@ -1,7 +1,10 @@
 #pragma once
 
-namespace pig_latin {
+#include <string>
 
-// TODO: add your solution here
+namespace pig_latin
+{
 
-}  // namespace pig_latin
+    std::string translate(std::string text);
+
+} // namespace pig_latin
